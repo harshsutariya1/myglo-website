@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "MyGlo",
   description: "MyGlo is a beauty booking platform that allows clients to book appointments with beauty professionals in their area.",
+  icons: {
+    icon: "/MyGlo3D_4.png",
+  },
 };
 
 export default function RootLayout({

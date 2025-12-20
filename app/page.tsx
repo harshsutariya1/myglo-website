@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import {
   Instagram,
   Mail,
@@ -149,9 +150,15 @@ const App = () => {
       {/* Navigation */}
       <nav className="relative z-50 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
         <div className="flex items-center gap-2">
-          {/* Logo Mark Simulation */}
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#FFB6A3] to-[#FC69C3] flex items-center justify-center">
-            <span className="text-white font-bold text-lg">M</span>
+          {/* Logo */}
+          <div className="w-10 h-10 relative">
+            <Image
+              src="/MyGlo3D_4.png"
+              alt="MyGlo Logo"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
           <span className="text-2xl font-bold tracking-tight">MyGlo</span>
         </div>
