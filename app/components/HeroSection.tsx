@@ -3,7 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-    ChevronRight, CheckCircle2, User, Search, Heart, Calendar, LayoutTemplate
+    ChevronRight, CheckCircle2, User, Search, Heart, Calendar, LayoutTemplate,
+    Home
 } from 'lucide-react';
 
 const HeroSection = () => {
@@ -142,6 +143,11 @@ const HeroSection = () => {
 
                     {/* Bottom Nav */}
                     <div className="absolute bottom-0 w-full h-16 bg-white border-t border-gray-100 flex justify-around items-center px-2 z-20">
+                        
+                        <div className="flex flex-col items-center gap-1 text-gray-400">
+                            <Home size={20} />
+                            <span className="text-[10px]">Home</span>
+                        </div>
                         <div className="flex flex-col items-center gap-1">
                             <Search size={20} className="text-[#FFB6A3]" />
                             <span className="text-[10px] font-bold text-[#FFB6A3]">Discover</span>
