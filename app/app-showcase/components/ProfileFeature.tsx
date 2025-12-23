@@ -4,6 +4,22 @@ import React from 'react';
 import { User, MapPin, CheckCircle2, ChevronLeft, Share, MoreHorizontal, MessageCircle, BadgeCheck, Star, Play, Layers } from 'lucide-react';
 
 const ProfileFeature = () => {
+    const [imgError, setImgError] = React.useState(false);
+    const [imageErrors, setImageErrors] = React.useState<Record<number, boolean>>({});
+
+    const portfolioPosts = [
+        "https://blobcdn.same.energy/d/69/dc/69dca881809cb72ab0ec9abf5f194fbf1e3cf464",
+        "https://blobcdn.same.energy/b/46/04/460468a1833e2a21918e3e89bda1f8201c54c7cb",
+        "https://blobcdn.same.energy/b/46/51/4651ccf26118f2b44da91b160f5fdf48bfc43f4c",
+        "https://blobcdn.same.energy/a/51/b1/51b178ca584bc4e7fe165674583618d318c4d4e2",
+        "https://blobcdn.same.energy/a/ca/68/ca68a364dfc9bbfd519110de488b06ac9461e3ba",
+        "https://blobcdn.same.energy/a/97/ee/97ee58250792bfdc75028733f6b1ace57c0b6416"
+    ];
+
+    const handleImageError = (index: number) => {
+        setImageErrors(prev => ({ ...prev, [index]: true }));
+    };
+
     return (
         <section className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="flex justify-center relative">
@@ -37,7 +53,16 @@ const ProfileFeature = () => {
                             <div className="px-6 relative -mt-10 mb-6">
                                 <div className="flex justify-between items-end mb-4">
                                     <div className="w-20 h-20 rounded-full border-4 border-white bg-gray-50 shadow-sm relative overflow-hidden flex items-center justify-center text-gray-300">
-                                        <User size={32} />
+                                        {!imgError ? (
+                                            <img
+                                                src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
+                                                alt="Profile"
+                                                className="absolute inset-0 w-full h-full object-cover"
+                                                onError={() => setImgError(true)}
+                                            />
+                                        ) : (
+                                            <User size={32} />
+                                        )}
                                     </div>
                                     <div className="flex gap-2 mb-2">
                                         <button className="h-8 px-4 rounded-full border border-gray-200 text-xs font-bold flex items-center gap-1 hover:bg-gray-50 transition-colors">Follow</button>
@@ -77,12 +102,20 @@ const ProfileFeature = () => {
 
                                 {/* Portfolio Grid */}
                                 <div className="grid grid-cols-3 gap-1 rounded-2xl overflow-hidden pb-8">
-                                    {[1, 2, 3, 4, 5, 6].map(i => (
-                                        <div key={i} className="aspect-square bg-gray-100 relative group overflow-hidden">
-                                            <div className="absolute inset-0 bg-gray-50 flex items-center justify-center text-gray-200 hover:bg-gray-100 transition-colors cursor-pointer">
+                                    {portfolioPosts.map((url, index) => (
+                                        <div key={index} className="aspect-square bg-gray-100 relative group overflow-hidden">
+                                            {!imageErrors[index] && (
+                                                <img
+                                                    src={url}
+                                                    alt={`Portfolio ${index + 1}`}
+                                                    className="absolute inset-0 w-full h-full object-cover z-0"
+                                                    onError={() => handleImageError(index)}
+                                                />
+                                            )}
+                                            <div className={`absolute inset-0 flex items-center justify-center transition-colors cursor-pointer z-10 ${!imageErrors[index] ? 'bg-transparent hover:bg-black/10' : 'bg-gray-50 text-gray-200 hover:bg-gray-100'}`}>
                                                 {/* Indicators for Video/carousel */}
-                                                {(i === 3 || i === 7) && <Play size={20} className="text-white drop-shadow-md fill-white/50" />}
-                                                {(i === 1 || i === 5) && <Layers size={20} className="text-white drop-shadow-md absolute top-2 right-2" />}
+                                                {(index === 2) && <Play size={20} className="text-white drop-shadow-md fill-white/50" />}
+                                                {(index === 0 || index === 4) && <Layers size={20} className="text-white drop-shadow-md absolute top-2 right-2" />}
                                             </div>
                                         </div>
                                     ))}

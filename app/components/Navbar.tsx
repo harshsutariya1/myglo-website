@@ -10,6 +10,16 @@ const Navbar = () => {
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -37,64 +47,71 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="relative z-50 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
-                <Link href="/" className="flex items-center gap-2 cursor-pointer z-50">
-                    {/* Logo */}
-                    <div className="w-10 h-10 relative">
-                        <img
-                            src="/MyGlo3D_4.png"
-                            alt="MyGlo Logo"
-                            className="w-full h-full object-contain"
-                        />
-                    </div>
-                    <span className="text-2xl font-bold tracking-tight">MyGlo</span>
-                </Link>
-                <div className="flex gap-4 items-center z-50">
-                    <a
-                        href="#features"
-                        onClick={(e) => handleScroll(e, 'features')}
-                        className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
-                    >
-                        Features
-                    </a>
-                    <a
-                        href="#business"
-                        onClick={(e) => handleScroll(e, 'business')}
-                        className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
-                    >
-                        Business
-                    </a>
-                    <a
-                        href="#faq"
-                        onClick={(e) => handleScroll(e, 'faq')}
-                        className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
-                    >
-                        FAQ
-                    </a>
-                    <a
-                        href="#contact"
-                        onClick={(e) => handleScroll(e, 'contact')}
-                        className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-4"
-                    >
-                        Contact
-                    </a>
-                    <a href="#" className="p-2 rounded-full hover:bg-[#F3F3F5] transition-colors hidden md:block">
-                        <Instagram size={20} color="#140000" />
-                    </a>
-                    <a href="mailto:hello@myglo.app" className="p-2 rounded-full hover:bg-[#F3F3F5] transition-colors hidden md:block">
-                        <Mail size={20} color="#140000" />
-                    </a>
+            <header
+                className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'
+                    }`}
+            >
+                <div className="w-full px-6 flex justify-between items-center max-w-7xl mx-auto">
+                    <Link href="/" className="flex items-center gap-2 cursor-pointer z-50">
+                        {/* Logo */}
+                        <div className={`relative transition-all duration-300 ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'}`}>
+                            <img
+                                src="/MyGlo3D_4.png"
+                                alt="MyGlo Logo"
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+                        <span className={`font-bold tracking-tight transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
+                            MyGlo
+                        </span>
+                    </Link>
+                    <nav className="flex gap-4 items-center z-50">
+                        <a
+                            href="#features"
+                            onClick={(e) => handleScroll(e, 'features')}
+                            className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
+                        >
+                            Features
+                        </a>
+                        <a
+                            href="#business"
+                            onClick={(e) => handleScroll(e, 'business')}
+                            className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
+                        >
+                            Business
+                        </a>
+                        <a
+                            href="#faq"
+                            onClick={(e) => handleScroll(e, 'faq')}
+                            className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
+                        >
+                            FAQ
+                        </a>
+                        <a
+                            href="#contact"
+                            onClick={(e) => handleScroll(e, 'contact')}
+                            className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-4"
+                        >
+                            Contact
+                        </a>
+                        <a href="#" className="p-2 rounded-full hover:bg-[#F3F3F5] transition-colors hidden md:block">
+                            <Instagram size={20} color="#140000" />
+                        </a>
+                        <a href="mailto:hello@myglo.app" className="p-2 rounded-full hover:bg-[#F3F3F5] transition-colors hidden md:block">
+                            <Mail size={20} color="#140000" />
+                        </a>
 
-                    {/* Mobile Hamburger */}
-                    <button
-                        className="md:hidden p-2 text-[#140000] hover:bg-[#F3F3F5] rounded-full transition-colors"
-                        onClick={() => setIsMenuOpen(true)}
-                        aria-label="Open menu"
-                    >
-                        <Menu size={24} />
-                    </button>
+                        {/* Mobile Hamburger */}
+                        <button
+                            className="md:hidden p-2 text-[#140000] hover:bg-[#F3F3F5] rounded-full transition-colors"
+                            onClick={() => setIsMenuOpen(true)}
+                            aria-label="Open menu"
+                        >
+                            <Menu size={24} />
+                        </button>
+                    </nav>
                 </div>
-            </nav>
+            </header>
 
             {/* Mobile Menu Overlay */}
             <div

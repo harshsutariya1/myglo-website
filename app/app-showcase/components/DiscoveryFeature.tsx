@@ -4,6 +4,8 @@ import React from 'react';
 import { Search, User, Heart, CheckCircle2, Home, Calendar } from 'lucide-react';
 
 const DiscoveryFeature = () => {
+    const [profileError, setProfileError] = React.useState(false);
+
     return (
         <section className="mb-32 grid lg:grid-cols-2 gap-16 items-center">
             <div className="flex justify-center relative">
@@ -25,7 +27,18 @@ const DiscoveryFeature = () => {
                         {/* Post 1 */}
                         <div className="space-y-3 mb-6">
                             <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FFB6A3] to-[#FC69C3]"></div>
+                                <div className="w-8 h-8 rounded-full overflow-hidden relative">
+                                    {!profileError ? (
+                                        <img
+                                            src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
+                                            alt="Lily Lashes"
+                                            className="w-full h-full object-cover"
+                                            onError={() => setProfileError(true)}
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-[#FFB6A3] to-[#FC69C3]"></div>
+                                    )}
+                                </div>
                                 <div>
                                     <div className="font-bold text-xs">Lily Lashes</div>
                                     <div className="text-[10px] text-gray-500">Melbourne CBD • 2km</div>

@@ -4,6 +4,9 @@ import React from 'react';
 import { TrendingUp, MessageCircle, User, Palette, Heart, Share2, Zap } from 'lucide-react';
 
 const CommunitySpotlight = () => {
+    const [imgError1, setImgError1] = React.useState(false);
+    const [imgError2, setImgError2] = React.useState(false);
+
     return (
         <section className="py-24 bg-gradient-to-b from-white to-rose-50/30 relative overflow-hidden">
             {/* Decorative Elements */}
@@ -70,9 +73,18 @@ const CommunitySpotlight = () => {
                         {/* Floating Card 1: Top Right */}
                         <div className="absolute top-4 right-4 w-60 bg-white p-3 rounded-2xl shadow-xl border border-gray-100 transform rotate-3 animate-float z-20">
                             <div className="aspect-[4/5] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-3 overflow-hidden relative group">
-                                <div className="absolute inset-0 flex items-center justify-center text-gray-300">
-                                    <User size={48} />
-                                </div>
+                                {!imgError1 ? (
+                                    <img
+                                        src="https://blobcdn.same.energy/b/46/04/460468a1833e2a21918e3e89bda1f8201c54c7cb"
+                                        alt="Summer Balayage"
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                        onError={() => setImgError1(true)}
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-50">
+                                        <User size={48} />
+                                    </div>
+                                )}
                                 <div className="absolute bottom-2 left-2 bg-black/50 backdrop-blur-md px-2 py-1 rounded-lg text-white text-[10px] font-bold">
                                     @sarahstyles
                                 </div>
@@ -85,8 +97,19 @@ const CommunitySpotlight = () => {
 
                         {/* Floating Card 2: Bottom Left */}
                         <div className="absolute bottom-12 left-0 w-56 bg-white p-3 rounded-2xl shadow-2xl border border-gray-100 transform -rotate-2 animate-float-delayed z-30">
-                            <div className="aspect-square bg-gradient-to-tr from-[#FFB6A3]/20 to-[#FC69C3]/20 rounded-xl mb-3 flex items-center justify-center">
-                                <Palette size={32} className="text-[#FC69C3]" />
+                            <div className="aspect-square bg-gradient-to-tr from-gray-100 to-gray-200 rounded-xl mb-3 overflow-hidden relative group">
+                                {!imgError2 ? (
+                                    <img
+                                        src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
+                                        alt="Service"
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                        onError={() => setImgError2(true)}
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-50">
+                                        <Palette size={48} className="text-[#FC69C3]" />
+                                    </div>
+                                )}
                             </div>
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2">
