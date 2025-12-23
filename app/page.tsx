@@ -19,7 +19,7 @@ import Background from './components/Background';
 
 const App = () => {
   return (
-    <div className="min-h-screen w-full font-sans text-[#140000] selection:bg-[#FFB6A3] selection:text-[#140000]" style={{ fontFamily: '"Plus Jakarta Sans", sans-serif' }}>
+    <div className="min-h-screen w-full font-sans text-[#140000] selection:bg-[#FFB6A3] selection:text-[#140000]">
       <Background />
       <Navbar />
       <HeroSection />

@@ -120,7 +120,7 @@ const HeroSection = () => {
                                     {!profileError ? (
                                         <img
                                             src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
-                                            alt="Lily Lashes"
+                                            alt="Lily Lashes Beauty Profile"
                                             className="w-full h-full object-cover"
                                             onError={() => setProfileError(true)}
                                         />
@@ -138,7 +138,7 @@ const HeroSection = () => {
                             <div className="w-full aspect-square bg-gray-100 rounded-xl relative overflow-hidden group">
                                 <img
                                     src="https://blobcdn.same.energy/d/69/dc/69dca881809cb72ab0ec9abf5f194fbf1e3cf464"
-                                    alt="Post 1"
+                                    alt="Natural hybrid set eyelashes work example"
                                     className="absolute inset-0 w-full h-full object-cover"
                                 />
                                 <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold shadow-sm">
