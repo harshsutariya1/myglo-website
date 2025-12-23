@@ -76,20 +76,20 @@ const Navbar = () => {
                         >
                             Features
                         </a>
-                        <a
-                            href="#business"
-                            onClick={(e) => handleScroll(e, 'business')}
+                        <Link
+                            href="/app-showcase"
                             className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
                         >
-                            Business
-                        </a>
-                        <a
-                            href="#faq"
-                            onClick={(e) => handleScroll(e, 'faq')}
+                            Preview
+                        </Link>
+                        <Link
+                            href="/about"
                             className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
                         >
-                            FAQ
-                        </a>
+                            About
+                        </Link>
+
+
                         <a
                             href="#contact"
                             onClick={(e) => handleScroll(e, 'contact')}
@@ -140,20 +140,24 @@ const Navbar = () => {
                         >
                             Features
                         </a>
-                        <a
-                            href="#business"
-                            onClick={(e) => handleScroll(e, 'business')}
+
+                        <Link
+                            href="/app-showcase"
+                            onClick={() => setIsMenuOpen(false)}
                             className="text-3xl font-bold text-[#140000] hover:text-[#E06052] transition-colors"
                         >
-                            Business
-                        </a>
-                        <a
-                            href="#faq"
-                            onClick={(e) => handleScroll(e, 'faq')}
+                            Preview
+                        </Link>
+
+                        <Link
+                            href="/about"
+                            onClick={() => setIsMenuOpen(false)}
                             className="text-3xl font-bold text-[#140000] hover:text-[#E06052] transition-colors"
                         >
-                            FAQ
-                        </a>
+                            About
+                        </Link>
+
+
                         <a
                             href="#contact"
                             onClick={(e) => handleScroll(e, 'contact')}
