@@ -1,0 +1,9 @@
+# Environment Variables Required
+
+# Supabase (Provided by Netlify Extensions)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_for_backend_actions
+
+# Resend Email (Add manually in Netlify Dashboard)
+RESEND_API_KEY=re_123456789

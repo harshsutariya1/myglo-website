@@ -3,20 +3,32 @@
 import React, { useState } from 'react';
 import { ChevronRight, CheckCircle2 } from 'lucide-react';
 
+import { joinWaitlist } from '../actions/joinWaitlist';
+
 const WaitlistSection = () => {
     const [email, setEmail] = useState('');
-    const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [message, setMessage] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!email) return;
         setStatus('loading');
+        setMessage('');
 
-        // Simulate API call
-        setTimeout(() => {
-            setStatus('success');
-            setEmail('');
-        }, 1500);
+        try {
+            const result = await joinWaitlist(email);
+            if (result.success) {
+                setStatus('success');
+                setEmail('');
+            } else {
+                setStatus('error');
+                setMessage(result.message);
+            }
+        } catch (error) {
+            setStatus('error');
+            setMessage('Something went wrong. Please try again.');
+        }
     };
 
     return (
@@ -76,6 +88,11 @@ const WaitlistSection = () => {
                                         )}
                                     </button>
                                 </div>
+                                {status === 'error' && (
+                                    <p className="text-xs text-red-400 text-left font-semibold animate-in fade-in slide-in-from-top-1">
+                                        {message}
+                                    </p>
+                                )}
                                 <p className="text-xs text-gray-500 text-left">
                                     Join 2,000+ others waiting for launch.
                                 </p>
@@ -84,7 +101,7 @@ const WaitlistSection = () => {
                     )}
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 
