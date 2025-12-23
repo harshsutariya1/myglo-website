@@ -1,0 +1,91 @@
+"use client";
+
+import React, { useState } from 'react';
+import { ChevronRight, CheckCircle2 } from 'lucide-react';
+
+const WaitlistSection = () => {
+    const [email, setEmail] = useState('');
+    const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success'
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+        setStatus('loading');
+
+        // Simulate API call
+        setTimeout(() => {
+            setStatus('success');
+            setEmail('');
+        }, 1500);
+    };
+
+    return (
+        <section id="waitlist" className="py-12 md:py-24 bg-[#140000] text-white relative overflow-hidden">
+            {/* Background Accents */}
+            <div className="absolute top-0 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-[#FFB6A3]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[#E06052]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+                <div className="max-w-md mx-auto text-center mb-8 md:mb-12">
+                    <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4">Join the Waitlist</h2>
+                    <p className="text-gray-400 text-sm md:text-base">
+                        Be the first to know when we launch in your area.
+                    </p>
+                </div>
+
+                <div className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl shadow-[#FFB6A3]/5 mx-auto">
+                    {status === 'success' ? (
+                        <div className="flex flex-col items-center justify-center py-6 text-center space-y-3 animate-in fade-in zoom-in duration-300">
+                            <div className="w-14 h-14 md:w-16 md:h-16 bg-[#07944F]/20 rounded-full flex items-center justify-center mb-2">
+                                <CheckCircle2 size={28} className="md:w-8 md:h-8" color="#07944F" />
+                            </div>
+                            <h3 className="text-lg md:text-xl font-bold text-white">You're on the list!</h3>
+                            <p className="text-sm md:text-base text-gray-400">We'll notify you as soon as we launch in your area.</p>
+                            <button
+                                onClick={() => setStatus('idle')}
+                                className="text-sm font-semibold text-[#FFB6A3] hover:text-[#E06052] mt-4"
+                            >
+                                Register another email
+                            </button>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="space-y-2">
+                                <label htmlFor="waitlist-email" className="text-sm font-semibold text-white block text-left">
+                                    Get early access
+                                </label>
+                                <div className="flex flex-col sm:flex-row gap-3">
+                                    <input
+                                        type="email"
+                                        id="waitlist-email"
+                                        required
+                                        placeholder="jane@example.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full sm:flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#FFB6A3] transition-all placeholder:text-gray-500 text-white"
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={status === 'loading'}
+                                        className="w-full sm:w-auto bg-white text-[#140000] px-6 py-3 sm:py-0 rounded-xl font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center min-w-[120px]"
+                                    >
+                                        {status === 'loading' ? (
+                                            <div className="w-5 h-5 border-2 border-[#140000]/30 border-t-[#140000] rounded-full animate-spin"></div>
+                                        ) : (
+                                            <span className="flex items-center gap-1">Join <ChevronRight size={16} /></span>
+                                        )}
+                                    </button>
+                                </div>
+                                <p className="text-xs text-gray-500 text-left">
+                                    Join 2,000+ others waiting for launch.
+                                </p>
+                            </div>
+                        </form>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default WaitlistSection;

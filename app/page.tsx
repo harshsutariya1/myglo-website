@@ -10,6 +10,7 @@ import BusinessSuite from './components/BusinessSuite';
 import CommunitySpotlight from './components/CommunitySpotlight';
 import TrustSafety from './components/TrustSafety';
 import RoadmapSection from './components/RoadmapSection';
+import WaitlistSection from './components/WaitlistSection';
 import FaqSection from './components/FaqSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -30,6 +31,7 @@ const App = () => {
       <TrustSafety />
       <RoadmapSection />
       <FaqSection />
+      <WaitlistSection />
       <ContactSection />
       <Footer />
       <ScrollToTop />
