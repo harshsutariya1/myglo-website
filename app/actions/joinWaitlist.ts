@@ -6,7 +6,7 @@ import { Resend } from "resend";
 // --- Configuration & Types ---
 
 // Ensure these environment variables are available in Netlify
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_DATABASE_URL!;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!; // Use Service Role for admin bypass
 const RESEND_KEY = process.env.RESEND_API_KEY!;
 
