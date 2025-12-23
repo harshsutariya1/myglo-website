@@ -9,7 +9,7 @@ const DiscoveryFeature = () => {
             <div className="flex justify-center relative">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#FFB6A3]/20 to-[#FC69C3]/20 blur-3xl rounded-full transform scale-90"></div>
                 {/* Phone Mockup: Discovery */}
-                <div className="relative w-[300px] h-[600px] bg-white rounded-[40px] border-[8px] border-[#140000] shadow-2xl overflow-hidden z-10 transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+                <div className="relative w-[300px] h-[600px] bg-white rounded-[40px] border-[8px] border-[#140000] shadow-2xl overflow-hidden z-10 transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500 scale-75 sm:scale-90 lg:scale-100">
                     <div className="h-6 w-full bg-white flex justify-between px-6 items-center pt-2">
                         <div className="text-[10px] font-bold">9:41</div>
                         <div className="flex gap-1"><div className="w-3 h-3 bg-gray-200 rounded-full"></div><div className="w-3 h-3 bg-gray-200 rounded-full"></div></div>

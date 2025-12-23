@@ -1,11 +1,21 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { Instagram, Mail } from 'lucide-react';
 
 const Navbar = () => {
+    const pathname = usePathname();
+    const router = useRouter();
+
     const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();
+        if (pathname !== '/') {
+            router.push(`/#${id}`);
+            return;
+        }
+
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -14,7 +24,7 @@ const Navbar = () => {
 
     return (
         <nav className="relative z-50 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
-            <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 cursor-pointer">
                 {/* Logo */}
                 <div className="w-10 h-10 relative">
                     <img
@@ -24,7 +34,7 @@ const Navbar = () => {
                     />
                 </div>
                 <span className="text-2xl font-bold tracking-tight">MyGlo</span>
-            </div>
+            </Link>
             <div className="flex gap-4 items-center">
                 <a
                     href="#features"
