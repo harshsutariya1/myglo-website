@@ -34,9 +34,11 @@ const DiscoveryFeature = () => {
                             </div>
 
                             <div className="w-full aspect-square bg-gray-100 rounded-xl relative overflow-hidden group">
-                                <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-50">
-                                    <User size={48} />
-                                </div>
+                                <img
+                                    src="https://blobcdn.same.energy/d/69/dc/69dca881809cb72ab0ec9abf5f194fbf1e3cf464"
+                                    alt="Post 1"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
                                 <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold shadow-sm">
                                     $60
                                 </div>
