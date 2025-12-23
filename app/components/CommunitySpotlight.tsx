@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { TrendingUp, MessageCircle, User, Palette, Heart, Share2, Zap } from 'lucide-react';
 
 const CommunitySpotlight = () => {
@@ -74,11 +75,13 @@ const CommunitySpotlight = () => {
                         <div className="absolute top-4 right-4 w-60 bg-white p-3 rounded-2xl shadow-xl border border-gray-100 transform rotate-3 animate-float z-20">
                             <div className="aspect-[4/5] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-3 overflow-hidden relative group">
                                 {!imgError1 ? (
-                                    <img
+                                    <Image
                                         src="https://blobcdn.same.energy/b/46/04/460468a1833e2a21918e3e89bda1f8201c54c7cb"
                                         alt="Summer Balayage"
-                                        className="absolute inset-0 w-full h-full object-cover"
+                                        fill
+                                        className="object-cover"
                                         onError={() => setImgError1(true)}
+                                        sizes="(max-width: 768px) 100vw, 300px"
                                     />
                                 ) : (
                                     <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-50">
@@ -99,11 +102,13 @@ const CommunitySpotlight = () => {
                         <div className="absolute bottom-12 left-0 w-56 bg-white p-3 rounded-2xl shadow-2xl border border-gray-100 transform -rotate-2 animate-float-delayed z-30">
                             <div className="aspect-square bg-gradient-to-tr from-gray-100 to-gray-200 rounded-xl mb-3 overflow-hidden relative group">
                                 {!imgError2 ? (
-                                    <img
+                                    <Image
                                         src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
                                         alt="Service"
-                                        className="absolute inset-0 w-full h-full object-cover"
+                                        fill
+                                        className="object-cover"
                                         onError={() => setImgError2(true)}
+                                        sizes="(max-width: 768px) 100vw, 300px"
                                     />
                                 ) : (
                                     <div className="absolute inset-0 flex items-center justify-center text-gray-300 bg-gray-50">

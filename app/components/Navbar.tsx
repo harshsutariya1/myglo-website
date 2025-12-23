@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Instagram, Mail, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -55,10 +56,12 @@ const Navbar = () => {
                     <Link href="/" className="flex items-center gap-2 cursor-pointer z-50">
                         {/* Logo */}
                         <div className={`relative transition-all duration-300 ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'}`}>
-                            <img
+                            <Image
                                 src="/MyGlo3D_4.png"
                                 alt="MyGlo Logo"
-                                className="w-full h-full object-contain"
+                                fill
+                                className="object-contain"
+                                priority
                             />
                         </div>
                         <span className={`font-bold tracking-tight transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { User, MapPin, CheckCircle2, ChevronLeft, Share, MoreHorizontal, MessageCircle, BadgeCheck, Star, Play, Layers } from 'lucide-react';
 
 const ProfileFeature = () => {
@@ -54,11 +55,13 @@ const ProfileFeature = () => {
                                 <div className="flex justify-between items-end mb-4">
                                     <div className="w-20 h-20 rounded-full border-4 border-white bg-gray-50 shadow-sm relative overflow-hidden flex items-center justify-center text-gray-300">
                                         {!imgError ? (
-                                            <img
+                                            <Image
                                                 src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
                                                 alt="Profile"
-                                                className="absolute inset-0 w-full h-full object-cover"
+                                                fill
+                                                className="object-cover"
                                                 onError={() => setImgError(true)}
+                                                sizes="80px"
                                             />
                                         ) : (
                                             <User size={32} />
@@ -105,11 +108,13 @@ const ProfileFeature = () => {
                                     {portfolioPosts.map((url, index) => (
                                         <div key={index} className="aspect-square bg-gray-100 relative group overflow-hidden">
                                             {!imageErrors[index] && (
-                                                <img
+                                                <Image
                                                     src={url}
                                                     alt={`Portfolio ${index + 1}`}
-                                                    className="absolute inset-0 w-full h-full object-cover z-0"
+                                                    fill
+                                                    className="object-cover z-0"
                                                     onError={() => handleImageError(index)}
+                                                    sizes="(max-width: 768px) 33vw, 100px"
                                                 />
                                             )}
                                             <div className={`absolute inset-0 flex items-center justify-center transition-colors cursor-pointer z-10 ${!imageErrors[index] ? 'bg-transparent hover:bg-black/10' : 'bg-gray-50 text-gray-200 hover:bg-gray-100'}`}>

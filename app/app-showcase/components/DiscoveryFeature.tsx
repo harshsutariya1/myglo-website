@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { Search, User, Heart, CheckCircle2, Home, Calendar } from 'lucide-react';
 
 const DiscoveryFeature = () => {
@@ -29,11 +30,13 @@ const DiscoveryFeature = () => {
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-full overflow-hidden relative">
                                     {!profileError ? (
-                                        <img
+                                        <Image
                                             src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
                                             alt="Lily Lashes"
-                                            className="w-full h-full object-cover"
+                                            fill
+                                            className="object-cover"
                                             onError={() => setProfileError(true)}
+                                            sizes="32px"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-[#FFB6A3] to-[#FC69C3]"></div>
@@ -47,10 +50,12 @@ const DiscoveryFeature = () => {
                             </div>
 
                             <div className="w-full aspect-square bg-gray-100 rounded-xl relative overflow-hidden group">
-                                <img
+                                <Image
                                     src="https://blobcdn.same.energy/d/69/dc/69dca881809cb72ab0ec9abf5f194fbf1e3cf464"
                                     alt="Post 1"
-                                    className="absolute inset-0 w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 300px"
                                 />
                                 <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold shadow-sm">
                                     $60
