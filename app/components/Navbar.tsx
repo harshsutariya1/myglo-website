@@ -14,10 +14,17 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setIsScrolled(window.scrollY > 20);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -49,13 +56,13 @@ const Navbar = () => {
     return (
         <>
             <header
-                className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'
+                className={`sticky top-0 z-50 w-full transition-[padding,background-color,backdrop-filter,box-shadow] duration-300 ease-in-out ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'
                     }`}
             >
                 <div className="w-full px-6 flex justify-between items-center max-w-7xl mx-auto">
                     <Link href="/" className="flex items-center gap-2 cursor-pointer z-50">
                         {/* Logo */}
-                        <div className={`relative transition-all duration-300 ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'}`}>
+                        <div className={`relative will-change-transform transition-transform duration-300 origin-left ${isScrolled ? 'scale-[0.8]' : 'scale-100'}`} style={{ width: '40px', height: '40px' }}>
                             <Image
                                 src="/MyGlo3D_4.png"
                                 alt="MyGlo Logo"
@@ -64,7 +71,7 @@ const Navbar = () => {
                                 priority
                             />
                         </div>
-                        <span className={`font-bold tracking-tight transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
+                        <span className={`font-bold tracking-tight will-change-transform transition-transform duration-300 origin-left text-2xl ${isScrolled ? 'scale-[0.833]' : 'scale-100'}`}>
                             MyGlo
                         </span>
                     </Link>
