@@ -38,7 +38,7 @@ const RoadmapSection = () => {
                                 {/* Connector arrow for mobile */}
                                 <div className="md:hidden absolute top-4 -left-2 w-4 h-4 bg-white border-b border-l border-[#E5E5E5] rotate-45"></div>
 
-                                <span className="text-[#140000] font-bold text-xs uppercase tracking-wider mb-2 block opacity-60">Q4 2023</span>
+                                <span className="text-[#140000] font-bold text-xs uppercase tracking-wider mb-2 block opacity-60">2024</span>
                                 <h3 className="font-bold text-lg mb-2 text-[#140000]">Concept Born</h3>
                                 <p className="text-sm text-[#534B4B]">MVP funded, partnership formed, and initial designs finalized.</p>
                             </div>
@@ -80,9 +80,9 @@ const RoadmapSection = () => {
                                 <div className="hidden md:block absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#FAFAFA] border-t border-l border-[#E5E5E5] rotate-45 group-hover:bg-white transition-colors"></div>
                                 <div className="md:hidden absolute top-4 -left-2 w-4 h-4 bg-[#FAFAFA] border-b border-l border-[#E5E5E5] rotate-45 group-hover:bg-white transition-colors"></div>
 
-                                <span className="text-[#888080] font-bold text-xs uppercase tracking-wider mb-2 block">Early 2026</span>
+                                <span className="text-[#888080] font-bold text-xs uppercase tracking-wider mb-2 block">May 2026</span>
                                 <h3 className="font-bold text-lg mb-2 text-[#140000]">GC Launch</h3>
-                                <p className="text-sm text-[#534B4B]">Official launch in Gold Coast, Australia. First 500 salons onboarded.</p>
+                                <p className="text-sm text-[#534B4B]">Official launch in Gold Coast, Australia. First 500 salons ready to go.</p>
                             </div>
                         </div>
 
@@ -96,7 +96,7 @@ const RoadmapSection = () => {
                                 <div className="hidden md:block absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#FAFAFA] border-t border-l border-[#E5E5E5] rotate-45 group-hover:bg-white transition-colors"></div>
                                 <div className="md:hidden absolute top-4 -left-2 w-4 h-4 bg-[#FAFAFA] border-b border-l border-[#E5E5E5] rotate-45 group-hover:bg-white transition-colors"></div>
 
-                                <span className="text-[#888080] font-bold text-xs uppercase tracking-wider mb-2 block">Late 2026</span>
+                                <span className="text-[#888080] font-bold text-xs uppercase tracking-wider mb-2 block">2027</span>
                                 <h3 className="font-bold text-lg mb-2 text-[#140000]">Global Scale</h3>
                                 <p className="text-sm text-[#534B4B]">Expansion to major cities (Syd, Melb) and international markets.</p>
                             </div>

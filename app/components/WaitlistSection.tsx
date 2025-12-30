@@ -40,9 +40,31 @@ const WaitlistSection = () => {
             <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
                 <div className="max-w-md mx-auto text-center mb-8 md:mb-12">
                     <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4">Join the Waitlist</h2>
-                    <p className="text-gray-400 text-sm md:text-base">
+                    <p className="text-gray-400 text-sm md:text-base mb-8">
                         Be the first to know when we launch in your area.
                     </p>
+
+                    {/* Early Bird Offer */}
+                    <div className="bg-gradient-to-r from-[#FFB6A3]/20 to-[#E06052]/20 border border-[#FFB6A3]/30 rounded-2xl p-6 backdrop-blur-md mb-8 relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFB6A3]/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"></div>
+                        <div className="relative z-10">
+                            <h3 className="text-[#FFB6A3] font-bold uppercase tracking-widest text-xs mb-4">🚀 Launch Exclusive</h3>
+                            <div className="grid sm:grid-cols-2 gap-6">
+                                <div className="text-left">
+                                    <div className="text-2xl font-bold text-white mb-1">500 Points</div>
+                                    <div className="text-xs text-gray-300">
+                                        <span className="text-[#FFB6A3] font-bold">($50 Value)</span> for every new user to spend on their first booking.
+                                    </div>
+                                </div>
+                                <div className="text-left sm:border-l sm:border-white/10 sm:pl-6">
+                                    <div className="text-2xl font-bold text-white mb-1">0% Fees</div>
+                                    <div className="text-xs text-gray-300">
+                                        For Salons & Artists for the first <span className="text-[#FFB6A3] font-bold">3 months</span> after launch.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl shadow-[#FFB6A3]/5 mx-auto">

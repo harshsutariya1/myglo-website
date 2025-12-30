@@ -53,16 +53,16 @@ const CommunitySpotlight = () => {
                         {/* Community Stats */}
                         <div className="flex gap-8 border-t border-[#E5E5E5] pt-8">
                             <div>
-                                <div className="text-2xl font-bold text-[#140000]">2k+</div>
-                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Active Stylists</div>
+                                <div className="text-2xl font-bold text-[#140000]">500+</div>
+                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Salons Waiting</div>
                             </div>
                             <div>
-                                <div className="text-2xl font-bold text-[#140000]">15k+</div>
-                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Monthly Bookings</div>
+                                <div className="text-2xl font-bold text-[#140000]">2026</div>
+                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Gold Coast Launch</div>
                             </div>
                             <div>
-                                <div className="text-2xl font-bold text-[#140000]">98%</div>
-                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Client Satisfaction</div>
+                                <div className="text-2xl font-bold text-[#140000]">1st</div>
+                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Community First</div>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@ const CommunitySpotlight = () => {
                                 <div className="absolute inset-0 bg-[#07944F] rounded-full animate-ping opacity-75"></div>
                             </div>
                             <div className="text-xs">
-                                <span className="font-bold">Sophie M.</span> just booked <span className="text-[#FFB6A3]">Full Set Lashes</span>
+                                <span className="font-bold">Sophie M.</span> just joined the <span className="text-[#FFB6A3]">Waitlist</span>
                             </div>
                         </div>
                     </div>

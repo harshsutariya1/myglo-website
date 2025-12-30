@@ -76,13 +76,7 @@ const Navbar = () => {
                         </span>
                     </Link>
                     <nav className="flex gap-4 items-center z-50">
-                        <a
-                            href="#features"
-                            onClick={(e) => handleScroll(e, 'features')}
-                            className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
-                        >
-                            Features
-                        </a>
+
                         <Link
                             href="/app-showcase"
                             className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
@@ -93,7 +87,7 @@ const Navbar = () => {
                             href="/about"
                             className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
                         >
-                            About
+                            About Us
                         </Link>
 
 
@@ -140,13 +134,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex flex-col items-center justify-center flex-1 gap-10 -mt-20">
-                        <a
-                            href="#features"
-                            onClick={(e) => handleScroll(e, 'features')}
-                            className="text-3xl font-bold text-[#140000] hover:text-[#E06052] transition-colors"
-                        >
-                            Features
-                        </a>
+
 
                         <Link
                             href="/app-showcase"

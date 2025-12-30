@@ -41,19 +41,32 @@ const HeroSection = () => {
                 </p>
 
                 {/* Call to Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <button
-                        onClick={scrollToWaitlist}
-                        className="bg-[#140000] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#333] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2"
-                    >
-                        Join Waitlist <ChevronRight size={20} />
-                    </button>
-                    <Link
-                        href="/app-showcase"
-                        className="px-8 py-4 rounded-xl font-bold border-2 border-[#140000]/10 hover:border-[#140000] text-[#140000] transition-all flex items-center justify-center gap-2 hover:-translate-y-1 bg-white/50 backdrop-blur-sm"
-                    >
-                        App Preview <LayoutTemplate size={20} />
-                    </Link>
+                <div className="flex flex-col gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <button
+                            onClick={scrollToWaitlist}
+                            className="bg-[#140000] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#333] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2"
+                        >
+                            Join Waitlist <ChevronRight size={20} />
+                        </button>
+                        <Link
+                            href="/app-showcase"
+                            className="px-8 py-4 rounded-xl font-bold border-2 border-[#140000]/10 hover:border-[#140000] text-[#140000] transition-all flex items-center justify-center gap-2 hover:-translate-y-1 bg-white/50 backdrop-blur-sm"
+                        >
+                            App Preview <LayoutTemplate size={20} />
+                        </Link>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3 sm:items-center mt-2">
+                        <div className="text-xs font-semibold text-[#E06052] flex items-center gap-2">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#FFF3F0] text-[#E06052]">🎁</span>
+                            Get <span className="underline decoration-dotted">500 MyGlo Points ($50)</span>
+                        </div>
+                        <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-300"></div>
+                        <div className="text-xs font-semibold text-[#534B4B] flex items-center gap-2">
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#FAFAFA] text-[#534B4B] border border-gray-100">✨</span>
+                            Salons: <span className="underline decoration-dotted">0% Fees for 3 Months</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
