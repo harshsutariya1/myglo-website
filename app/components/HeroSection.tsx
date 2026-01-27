@@ -57,11 +57,6 @@ const HeroSection = () => {
                         </Link>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3 sm:items-center mt-2">
-                        <div className="text-xs font-semibold text-[#E06052] flex items-center gap-2">
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#FFF3F0] text-[#E06052]">🎁</span>
-                            Get <span className="underline decoration-dotted">500 MyGlo Points ($50)</span>
-                        </div>
-                        <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-300"></div>
                         <div className="text-xs font-semibold text-[#534B4B] flex items-center gap-2">
                             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#FAFAFA] text-[#534B4B] border border-gray-100">✨</span>
                             Salons: <span className="underline decoration-dotted">0% Fees for 3 Months</span>
@@ -71,7 +66,7 @@ const HeroSection = () => {
             </div>
 
             {/* Right Column: App Mockup Carousel */}
-            <div className="relative h-[600px] w-full mt-8 lg:mt-0 items-center justify-center perspective-1000 hidden min-[400px]:flex">
+            <div className="relative h-[600px] w-full mt-8 lg:mt-0 items-center justify-center perspective-1000 hidden min-[500px]:flex">
                 {/* Decorative Background Blob */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-[#FFB6A3]/20 to-[#FC69C3]/20 rounded-full blur-3xl pointer-events-none"></div>
 

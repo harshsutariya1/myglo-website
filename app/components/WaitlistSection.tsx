@@ -49,14 +49,8 @@ const WaitlistSection = () => {
                         <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFB6A3]/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"></div>
                         <div className="relative z-10">
                             <h3 className="text-[#FFB6A3] font-bold uppercase tracking-widest text-xs mb-4">🚀 Launch Exclusive</h3>
-                            <div className="grid sm:grid-cols-2 gap-6">
-                                <div className="text-left">
-                                    <div className="text-2xl font-bold text-white mb-1">500 Points</div>
-                                    <div className="text-xs text-gray-300">
-                                        <span className="text-[#FFB6A3] font-bold">($50 Value)</span> for every new user to spend on their first booking.
-                                    </div>
-                                </div>
-                                <div className="text-left sm:border-l sm:border-white/10 sm:pl-6">
+                            <div className="flex justify-center">
+                                <div className="text-center">
                                     <div className="text-2xl font-bold text-white mb-1">0% Fees</div>
                                     <div className="text-xs text-gray-300">
                                         For Salons & Artists for the first <span className="text-[#FFB6A3] font-bold">3 months</span> after launch.
