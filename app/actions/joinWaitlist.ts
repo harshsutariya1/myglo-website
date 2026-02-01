@@ -7,13 +7,11 @@ import { Resend } from "resend";
 
 // Ensure these environment variables are available in Netlify
 const SUPABASE_URL = process.env.SUPABASE_DATABASE_URL!;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!; // Use Service Role for admin bypass
+const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY!; // Use Anon Key for public access (RLS protected)
 const RESEND_KEY = process.env.RESEND_API_KEY!;
 
 // Initialize Clients
-// Note: We use the Service Role Key to bypass RLS policies for simple insertion logic.
-// Ideally, you'd have an RLS policy and use the ANON key, but this is robust for server-side actions.
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const resend = new Resend(RESEND_KEY);
 
 type ActionResponse = {
@@ -136,9 +134,7 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
 
     // 2. Send Welcome Email via Resend
     const { error: emailError } = await resend.emails.send({
-      from: process.env.NODE_ENV === 'development'
-        ? "MyGlo <onboarding@resend.dev>"
-        : "MyGlo <hello@myglo.app>",
+      from: "MyGlo <hello@myglo.app>",
       to: email,
       subject: "Welcome to the MyGlo Waitlist! ✨",
       html: getWelcomeEmailHtml(),
@@ -148,12 +144,7 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
       console.error("Resend Error:", emailError);
 
       // In Development, we want to know if the email failed (e.g. Resend unauthorized)
-      if (process.env.NODE_ENV === 'development') {
-        return {
-          success: false,
-          message: `Dev Error: ${emailError.message}`
-        };
-      }
+
 
       // In Production, we fail silently on email to not alarm the user (since DB insert worked)
     }
@@ -163,12 +154,57 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
     // For simplicity, we await it but catch errors softly so it doesn't fail the user request.
     try {
       await resend.emails.send({
-        from: process.env.NODE_ENV === 'development'
-          ? "MyGlo System <onboarding@resend.dev>"
-          : "MyGlo System <hello@myglo.app>",
-        to: process.env.NODE_ENV === 'development' ? "harsh@myglo.app" : ["harsh@myglo.app", "sam@myglo.app"],
+        from: "MyGlo System <hello@myglo.app>",
+        to: ["harsh@myglo.app"],
         subject: `New Waitlist Signup: ${email}`,
-        html: `<p>A new user has joined the waitlist:</p><p><strong>${email}</strong></p>`,
+        html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+            body { margin: 0; padding: 0; background-color: #F3F3F5; font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif; }
+          </style>
+        </head>
+        <body style="margin: 0; padding: 40px 20px; background-color: #F3F3F5;">
+          <table align="center" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); font-family: 'Plus Jakarta Sans', sans-serif;">
+            
+            <!-- Header -->
+            <tr>
+              <td style="background-color: #140000; padding: 32px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700;">🚀 New Signup</h1>
+              </td>
+            </tr>
+
+            <!-- Content -->
+            <tr>
+              <td style="padding: 40px;">
+                <p style="margin: 0 0 24px 0; color: #4B5563; font-size: 16px;">
+                  A new user has just joined the <strong>MyGlo Waitlist</strong>.
+                </p>
+
+                <div style="background-color: #F3F4F6; padding: 24px; border-radius: 12px; border: 1px solid #E5E7EB;">
+                  <p style="margin: 0 0 8px 0; color: #6B7280; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">User Email</p>
+                  <p style="margin: 0; color: #111827; font-size: 20px; font-weight: 600; word-break: break-all;">
+                    <a href="mailto:${email}" style="color: #111827; text-decoration: none;">${email}</a>
+                  </p>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="background-color: #F9FAFB; padding: 20px; text-align: center; border-top: 1px solid #F3F4F6;">
+                <p style="margin: 0; color: #9CA3AF; font-size: 12px;">
+                  Sent from MyGlo Website
+                </p>
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html>
+        `,
       });
     } catch (adminErr) {
       console.error("Failed to send admin notification:", adminErr);

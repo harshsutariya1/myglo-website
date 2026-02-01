@@ -47,9 +47,13 @@ create table waitlist (
   created_at_ist timestamp with time zone default timezone('Asia/Kolkata'::text, now()) not null
 );
 
--- Optional: Enable Row Level Security (RLS) for extra security
+-- Enable Row Level Security (RLS)
 alter table waitlist enable row level security;
 
--- Policy to allow only INSERTs from the service role or authenticated users (depends on your setup)
--- Since we use the SERVICE_ROLE_KEY in the backend, this table is secure from public access by default if no public policies exist.
+-- Create a policy that allows anyone (public/anon) to insert into the table
+create policy "Allow public inserts"
+on waitlist
+for insert
+to anon
+with check (true);
 ```

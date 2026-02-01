@@ -26,10 +26,8 @@ export async function submitContact(formData: ContactFormData): Promise<ActionRe
 
   try {
     const { error } = await resend.emails.send({
-      from: process.env.NODE_ENV === 'development'
-        ? "MyGlo Contact Form <onboarding@resend.dev>"
-        : "MyGlo Contact Form <hello@myglo.app>",
-      to: process.env.NODE_ENV === 'development' ? "harsh@myglo.app" : ["harsh@myglo.app", "sam@myglo.app"],
+      from: "MyGlo Contact Form <hello@myglo.app>",
+      to: ["harsh@myglo.app", "sam@myglo.app"],
       replyTo: email,
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
@@ -118,9 +116,7 @@ export async function submitContact(formData: ContactFormData): Promise<ActionRe
 
     if (error) {
       console.error("Resend Contact Error:", error);
-      if (process.env.NODE_ENV === 'development') {
-        return { success: false, message: `Dev Error: ${error.message}` };
-      }
+
       return { success: false, message: "Failed to send message." };
     }
 
@@ -129,9 +125,7 @@ export async function submitContact(formData: ContactFormData): Promise<ActionRe
     // We'll catch errors so it doesn't report failure if the admin email succeeded.
     try {
       await resend.emails.send({
-        from: process.env.NODE_ENV === 'development'
-          ? "MyGlo Team <onboarding@resend.dev>"
-          : "MyGlo Team <hello@myglo.app>",
+        from: "MyGlo Team <hello@myglo.app>",
         to: email,
         subject: "We received your message! ✨",
         html: `
