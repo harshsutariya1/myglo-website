@@ -6,7 +6,7 @@ import { Resend } from "resend";
 // --- Configuration & Types ---
 
 // Ensure these environment variables are available in Netlify
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_DATABASE_URL!;
+const SUPABASE_URL = process.env.SUPABASE_DATABASE_URL!;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!; // Use Service Role for admin bypass
 const RESEND_KEY = process.env.RESEND_API_KEY!;
 
@@ -127,9 +127,7 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
     if (dbError) {
       if (dbError.code === "23505") {
         // Unique violation: The user is already on the list.
-        // We treat this as a "success" to the user, but don't send another email (or do, depending on preference).
-        // Let's just return success so the UI shows the checkmark.
-        console.log("User already in waitlist:", email);
+        // We treat this as a "success" to the user, but don't send another email.
         return { success: true, message: "You are already on the list!" };
       }
       console.error("Supabase Error:", dbError);
@@ -138,7 +136,9 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
 
     // 2. Send Welcome Email via Resend
     const { error: emailError } = await resend.emails.send({
-      from: "MyGlo <onboarding@resend.dev>", // Changed from 'hello@myglo.app' for testing without domain verification
+      from: process.env.NODE_ENV === 'development'
+        ? "MyGlo <onboarding@resend.dev>"
+        : "MyGlo <hello@myglo.app>",
       to: email,
       subject: "Welcome to the MyGlo Waitlist! ✨",
       html: getWelcomeEmailHtml(),
@@ -156,6 +156,22 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
       }
 
       // In Production, we fail silently on email to not alarm the user (since DB insert worked)
+    }
+
+    // 3. Send Internal Notification to Admins
+    // We fire and forget this so not to block the user response, or we can await it.
+    // For simplicity, we await it but catch errors softly so it doesn't fail the user request.
+    try {
+      await resend.emails.send({
+        from: process.env.NODE_ENV === 'development'
+          ? "MyGlo System <onboarding@resend.dev>"
+          : "MyGlo System <hello@myglo.app>",
+        to: ["harsh@myglo.app", "sam@myglo.app"],
+        subject: `New Waitlist Signup: ${email}`,
+        html: `<p>A new user has joined the waitlist:</p><p><strong>${email}</strong></p>`,
+      });
+    } catch (adminErr) {
+      console.error("Failed to send admin notification:", adminErr);
     }
 
     return { success: true, message: "Successfully joined!" };

@@ -11,6 +11,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
+            url: `${baseUrl}/app-showcase`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 1,
+        },
+        {
+            url: `${baseUrl}/about`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 1,
+        },
+        {
             url: `${baseUrl}/privacy`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
