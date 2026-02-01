@@ -166,7 +166,7 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
         from: process.env.NODE_ENV === 'development'
           ? "MyGlo System <onboarding@resend.dev>"
           : "MyGlo System <hello@myglo.app>",
-        to: ["harsh@myglo.app", "sam@myglo.app"],
+        to: process.env.NODE_ENV === 'development' ? "harsh@myglo.app" : ["harsh@myglo.app", "sam@myglo.app"],
         subject: `New Waitlist Signup: ${email}`,
         html: `<p>A new user has joined the waitlist:</p><p><strong>${email}</strong></p>`,
       });

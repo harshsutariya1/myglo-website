@@ -29,7 +29,7 @@ export async function submitContact(formData: ContactFormData): Promise<ActionRe
       from: process.env.NODE_ENV === 'development'
         ? "MyGlo Contact Form <onboarding@resend.dev>"
         : "MyGlo Contact Form <hello@myglo.app>",
-      to: "harsh@myglo.app",
+      to: process.env.NODE_ENV === 'development' ? "harsh@myglo.app" : ["harsh@myglo.app", "sam@myglo.app"],
       replyTo: email,
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
