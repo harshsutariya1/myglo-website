@@ -1,4 +1,6 @@
-'use client';
+"use client";
+
+import React from "react";
 
 export default function GlobalError({
     error,
@@ -10,8 +12,15 @@ export default function GlobalError({
     return (
         <html>
             <body>
-                <h2>Something went wrong!</h2>
-                <button onClick={() => reset()}>Try again</button>
+                <div className="flex min-h-screen flex-col items-center justify-center p-4 text-center">
+                    <h2 className="mb-4 text-2xl font-bold">Something went wrong!</h2>
+                    <button
+                        onClick={() => reset()}
+                        className="rounded bg-black px-4 py-2 text-white hover:bg-gray-800"
+                    >
+                        Try again
+                    </button>
+                </div>
             </body>
         </html>
     );
