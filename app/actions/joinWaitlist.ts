@@ -26,7 +26,7 @@ const getWelcomeEmailHtml = () => `
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+    /* Font import removed for better email client compatibility and privacy. Using system font stack. */
     body { margin: 0; padding: 0; background-color: #FFF3F0; font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
     .mobile-padding { padding: 40px 20px; }
     @media only screen and (max-width: 600px) {
@@ -57,13 +57,39 @@ const getWelcomeEmailHtml = () => `
               </h2>
               
               <p style="color: #534B4B; font-size: 16px; line-height: 1.7; margin: 0 0 24px 0;">
-                You've just taken the first step towards a better beauty experience. 
-                We're building the platform that <b>Fresha</b> and <b>Instagram</b> wish they were—combining discovery with instant booking.
+                You've just secured your spot for the future of beauty. 
+                We represent the new standard in beauty booking—combining effortless discovery with instant access to the Gold Coast's best artists. Get ready for an experience that's as beautiful as the results.
               </p>
               
               <p style="color: #534B4B; font-size: 16px; line-height: 1.7; margin: 0 0 32px 0;">
                 You are now on our priority waitlist. We will notify you the moment MyGlo launches in the Gold Coast.
               </p>
+
+              <!-- Perks Section -->
+              <div style="background-color: #FFF3F0; border-radius: 16px; padding: 32px; margin-bottom: 32px; border: 1px solid rgba(255, 182, 163, 0.4);">
+                <p style="color: #140000; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px 0;">Waitlist Perks</p>
+                
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="24" valign="top" style="padding-bottom: 16px;">
+                      <span style="font-size: 18px;">💎</span>
+                    </td>
+                    <td style="padding-left: 16px; padding-bottom: 16px;">
+                      <p style="margin: 0; color: #140000; font-weight: 600; font-size: 15px;">Early Access</p>
+                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">Be the first to download the app and secure appointments.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="24" valign="top">
+                      <span style="font-size: 18px;">🎁</span>
+                    </td>
+                    <td style="padding-left: 16px;">
+                      <p style="margin: 0; color: #140000; font-weight: 600; font-size: 15px;">Exclusive Launch Offers</p>
+                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">Unlock special discounts and rewards just for our founding members.</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
 
               <!-- CTA Button -->
               <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -163,7 +189,7 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
         <head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <style>
-            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+            /* Font import removed for better email client compatibility and privacy. Using system font stack. */
             body { margin: 0; padding: 0; background-color: #F3F3F5; font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif; }
           </style>
         </head>

@@ -36,7 +36,7 @@ export async function submitContact(formData: ContactFormData): Promise<ActionRe
         <head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <style>
-            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+            /* Font import removed for better email client compatibility and privacy. Using system font stack. */
             body { margin: 0; padding: 0; background-color: #F3F3F5; font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
             .mobile-padding { padding: 40px 20px; }
             @media only screen and (max-width: 600px) {
@@ -134,7 +134,7 @@ export async function submitContact(formData: ContactFormData): Promise<ActionRe
         <head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <style>
-            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+            /* Font import removed for better email client compatibility and privacy. Using system font stack. */
             body { margin: 0; padding: 0; background-color: #FFF3F0; font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
             .mobile-padding { padding: 40px 20px; }
             @media only screen and (max-width: 600px) {
