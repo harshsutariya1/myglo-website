@@ -32,7 +32,7 @@ export default async function FounderPage() {
                     <div className="text-xs text-left bg-gray-50 p-4 rounded-lg font-mono text-gray-500 break-all border border-gray-100">
                         Hint: Ensure <code>SUPABASE_SERVICE_ROLE_KEY</code> is set in your environment variables if RLS is enabled on the table.
                     </div>
-                    <a href="/founders" className="mt-6 inline-block text-sm font-bold text-[#140000] hover:text-[#FFB6A3] transition-colors">
+                    <a href="/waitlist" className="mt-6 inline-block text-sm font-bold text-[#140000] hover:text-[#FFB6A3] transition-colors">
                         Try Refreshing
                     </a>
                 </div>

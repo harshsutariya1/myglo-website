@@ -26,6 +26,10 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 export type WaitlistEntry = {
     id: any; // ID type depends on DB, usually number or uuid
     email: string;
+    name?: string;
+    city?: string;
+    salon_name?: string;
+    mobile?: string;
     created_at: string;
 };
 

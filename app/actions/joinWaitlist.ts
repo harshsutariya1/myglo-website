@@ -136,22 +136,47 @@ const getWelcomeEmailHtml = () => `
 
 // --- Server Action ---
 
-export async function joinWaitlist(email: string): Promise<ActionResponse> {
+type JoinWaitlistData = {
+  email: string;
+  name: string;
+  city: string;
+  salonName: string;
+  mobile?: string;
+};
+
+export async function joinWaitlist(data: JoinWaitlistData): Promise<ActionResponse> {
+  const { email, name, city, salonName, mobile } = data;
+
   if (!email || !email.includes("@")) {
     return { success: false, message: "Invalid email address." };
+  }
+  if (!name || name.trim().length === 0) {
+    return { success: false, message: "Name is required." };
+  }
+  if (!city || city.trim().length === 0) {
+    return { success: false, message: "City is required." };
+  }
+  if (!salonName || salonName.trim().length === 0) {
+    return { success: false, message: "Salon Name is required." };
   }
 
   try {
     // 1. Insert into Supabase
     const { error: dbError } = await supabase
       .from("waitlist")
-      .insert([{ email, created_at: new Date().toISOString() }]);
+      .insert([{
+        email,
+        name,
+        city,
+        salon_name: salonName,
+        mobile,
+        created_at: new Date().toISOString()
+      }]);
 
     // Handle duplicate key error (code 23505 in Postgres)
     if (dbError) {
       if (dbError.code === "23505") {
         // Unique violation: The user is already on the list.
-        // We treat this as a "success" to the user, but don't send another email.
         return { success: true, message: "You are already on the list!" };
       }
       console.error("Supabase Error:", dbError);
@@ -168,63 +193,57 @@ export async function joinWaitlist(email: string): Promise<ActionResponse> {
 
     if (emailError) {
       console.error("Resend Error:", emailError);
-
-      // In Development, we want to know if the email failed (e.g. Resend unauthorized)
-
-
-      // In Production, we fail silently on email to not alarm the user (since DB insert worked)
     }
 
     // 3. Send Internal Notification to Admins
-    // We fire and forget this so not to block the user response, or we can await it.
-    // For simplicity, we await it but catch errors softly so it doesn't fail the user request.
     try {
       await resend.emails.send({
         from: "MyGlo System <hello@myglo.app>",
         to: ["harsh@myglo.app"],
-        subject: `New Waitlist Signup: ${email}`,
+        subject: `New Waitlist Signup: ${name} from ${salonName}`,
         html: `
         <!DOCTYPE html>
         <html>
-        <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <style>
-            /* Font import removed for better email client compatibility and privacy. Using system font stack. */
-            body { margin: 0; padding: 0; background-color: #F3F3F5; font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif; }
-          </style>
-        </head>
-        <body style="margin: 0; padding: 40px 20px; background-color: #F3F3F5;">
-          <table align="center" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); font-family: 'Plus Jakarta Sans', sans-serif;">
-            
-            <!-- Header -->
+        <body style="margin: 0; padding: 40px 20px; background-color: #F3F3F5; font-family: 'Plus Jakarta Sans', sans-serif;">
+          <table align="center" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
             <tr>
               <td style="background-color: #140000; padding: 32px; text-align: center;">
-                <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700;">🚀 New Signup</h1>
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🚀 New Signup</h1>
               </td>
             </tr>
-
-            <!-- Content -->
             <tr>
               <td style="padding: 40px;">
-                <p style="margin: 0 0 24px 0; color: #4B5563; font-size: 16px;">
-                  A new user has just joined the <strong>MyGlo Waitlist</strong>.
-                </p>
+                <div style="background-color: #F9FAFB; padding: 24px; border-radius: 12px; border: 1px solid #E5E7EB;">
+                  
+                  <div style="margin-bottom: 16px;">
+                    <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Name</p>
+                    <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${name}</p>
+                  </div>
 
-                <div style="background-color: #F3F4F6; padding: 24px; border-radius: 12px; border: 1px solid #E5E7EB;">
-                  <p style="margin: 0 0 8px 0; color: #6B7280; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">User Email</p>
-                  <p style="margin: 0; color: #111827; font-size: 20px; font-weight: 600; word-break: break-all;">
-                    <a href="mailto:${email}" style="color: #111827; text-decoration: none;">${email}</a>
-                  </p>
+                  <div style="margin-bottom: 16px;">
+                    <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Salon/Business</p>
+                    <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${salonName}</p>
+                  </div>
+
+                  <div style="display: flex; gap: 24px; margin-bottom: 16px;">
+                     <div>
+                        <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">City</p>
+                        <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${city}</p>
+                     </div>
+                     <div>
+                        <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Mobile</p>
+                        <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${mobile || 'N/A'}</p>
+                     </div>
+                  </div>
+
+                  <div>
+                    <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Email</p>
+                    <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">
+                      <a href="mailto:${email}" style="color: #111827; text-decoration: none;">${email}</a>
+                    </p>
+                  </div>
+
                 </div>
-              </td>
-            </tr>
-
-            <!-- Footer -->
-            <tr>
-              <td style="background-color: #F9FAFB; padding: 20px; text-align: center; border-top: 1px solid #F3F4F6;">
-                <p style="margin: 0; color: #9CA3AF; font-size: 12px;">
-                  Sent from MyGlo Website
-                </p>
               </td>
             </tr>
           </table>

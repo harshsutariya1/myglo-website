@@ -2,14 +2,17 @@
 
 import React, { useState } from "react";
 import { WaitlistEntry, logoutAction } from "@/app/actions/founderActions";
-import { Download, Search, LogOut, Users, RefreshCw, Calendar, Mail } from "lucide-react";
+import { Download, Search, LogOut, Users, RefreshCw, Calendar, Mail, MapPin, Building2, Phone } from "lucide-react";
 
 export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) {
     const [searchTerm, setSearchTerm] = useState("");
 
     // Filter logic
     const filteredData = data.filter((entry) =>
-        entry.email.toLowerCase().includes(searchTerm.toLowerCase())
+        entry.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        entry.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        entry.salon_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        entry.city?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Stats
@@ -25,8 +28,8 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
 
     const exportCSV = () => {
         const csvContent = "data:text/csv;charset=utf-8,"
-            + "Email,Date Joined\n"
-            + data.map(e => `${e.email},${new Date(e.created_at).toLocaleString()}`).join("\n");
+            + "Name,Salon,City,Mobile,Email,Date Joined\n"
+            + data.map(e => `"${e.name || ''}","${e.salon_name || ''}","${e.city || ''}","${e.mobile || ''}","${e.email}",${new Date(e.created_at).toLocaleString()}`).join("\n");
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
@@ -40,7 +43,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
         <div className="min-h-screen w-full bg-[#FBF9F9] font-sans text-[#140000]">
             {/* Navigation */}
             <nav className="bg-white border-b border-[#F3F3F5] px-6 py-4 sticky top-0 z-50">
-                <div className="max-w-6xl mx-auto flex items-center justify-between">
+                <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-[#FFB6A3] to-[#FC69C3] rounded-lg flex items-center justify-center text-white font-bold text-sm">
                             M
@@ -60,7 +63,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                 </div>
             </nav>
 
-            <main className="max-w-6xl mx-auto px-6 py-12">
+            <main className="max-w-7xl mx-auto px-6 py-12">
                 {/* Header Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                     <div className="bg-white p-6 rounded-2xl border border-[#F3F3F5] shadow-sm">
@@ -106,7 +109,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#D4D4D4]" size={18} />
                         <input
                             type="text"
-                            placeholder="Search emails..."
+                            placeholder="Search name, email, salon..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             className="w-full pl-10 pr-4 py-3 bg-white border border-[#E5E5E5] rounded-xl text-sm outline-none focus:border-[#FFB6A3] focus:ring-2 focus:ring-[#FFB6A3]/10 transition-all"
@@ -123,8 +126,10 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-[#FAFAFA] border-b border-[#F3F3F5]">
-                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider w-16">#</th>
-                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">Email Address</th>
+                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">#</th>
+                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">Name/Salon</th>
+                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">Contact</th>
+                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">Location</th>
                                     <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider text-right">Date Joined</th>
                                 </tr>
                             </thead>
@@ -135,23 +140,54 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                                             <td className="py-4 px-6 text-xs font-medium text-[#D4D4D4] group-hover:text-[#FFB6A3]">
                                                 {data.length - index}
                                             </td>
+
+                                            {/* Name & Salon */}
                                             <td className="py-4 px-6">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-8 h-8 rounded-full bg-[#FFF3F0] flex items-center justify-center text-[#E06052] font-bold text-xs uppercase">
-                                                        {entry.email.charAt(0)}
+                                                <div className="flex flex-col">
+                                                    <div className="font-bold text-[#140000] text-sm">{entry.name || 'Unknown'}</div>
+                                                    <div className="flex items-center gap-1 text-xs text-[#888080] mt-1">
+                                                        <Building2 size={12} />
+                                                        {entry.salon_name || 'Free Agent'}
                                                     </div>
-                                                    <span className="font-medium text-[#140000]">{entry.email}</span>
                                                 </div>
                                             </td>
+
+                                            {/* Contact */}
+                                            <td className="py-4 px-6">
+                                                <div className="flex flex-col gap-1">
+                                                    <div className="flex items-center gap-2 text-sm text-[#140000]">
+                                                        <Mail size={12} className="text-[#D4D4D4]" />
+                                                        {entry.email}
+                                                    </div>
+                                                    {entry.mobile && (
+                                                        <div className="flex items-center gap-2 text-xs text-[#888080]">
+                                                            <Phone size={12} className="text-[#D4D4D4]" />
+                                                            {entry.mobile}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </td>
+
+                                            {/* Location */}
+                                            <td className="py-4 px-6">
+                                                <div className="flex items-center gap-2 text-sm text-[#534B4B]">
+                                                    <div className="p-1 px-2 rounded-md bg-[#F3F4F6] text-[#6B7280] text-xs font-medium flex items-center gap-1">
+                                                        <MapPin size={10} />
+                                                        {entry.city || 'N/A'}
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            {/* Date */}
                                             <td className="py-4 px-6 text-right">
-                                                <div className="flex items-center justify-end gap-2 text-sm text-[#534B4B]">
-                                                    <Calendar size={14} className="text-[#D4D4D4]" />
-                                                    {new Date(entry.created_at).toLocaleDateString("en-AU", {
-                                                        day: "numeric",
-                                                        month: "short",
-                                                        year: "numeric"
-                                                    })}
-                                                    <span className="text-[#D4D4D4] text-xs ml-1">
+                                                <div className="flex flex-col items-end gap-1">
+                                                    <span className="text-sm text-[#534B4B]">
+                                                        {new Date(entry.created_at).toLocaleDateString("en-AU", {
+                                                            day: "numeric",
+                                                            month: "short"
+                                                        })}
+                                                    </span>
+                                                    <span className="text-[#D4D4D4] text-[10px]">
                                                         {new Date(entry.created_at).toLocaleTimeString("en-AU", {
                                                             hour: "2-digit",
                                                             minute: "2-digit"
@@ -163,7 +199,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan={3} className="py-12 text-center">
+                                        <td colSpan={5} className="py-12 text-center">
                                             <div className="flex flex-col items-center gap-3">
                                                 <div className="w-12 h-12 bg-[#F3F3F5] rounded-full flex items-center justify-center text-[#D4D4D4]">
                                                     <Mail size={24} />

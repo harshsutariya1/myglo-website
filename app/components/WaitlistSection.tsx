@@ -1,26 +1,52 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ChevronRight, CheckCircle2, User, Building2, MapPin, Smartphone, Mail } from 'lucide-react';
 
 import { joinWaitlist } from '../actions/joinWaitlist';
 
 const WaitlistSection = () => {
-    const [email, setEmail] = useState('');
+    // Form State
+    const [formData, setFormData] = useState({
+        name: '',
+        city: '',
+        salonName: '',
+        email: '',
+        mobile: ''
+    });
+
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email) return;
+
+        // Basic Client Validation
+        if (!formData.email || !formData.name || !formData.city || !formData.salonName) {
+            setMessage("Please fill in all required fields.");
+            setStatus('error');
+            return;
+        }
+
         setStatus('loading');
         setMessage('');
 
         try {
-            const result = await joinWaitlist(email);
+            const result = await joinWaitlist({
+                email: formData.email,
+                name: formData.name,
+                city: formData.city,
+                salonName: formData.salonName,
+                mobile: formData.mobile
+            });
+
             if (result.success) {
                 setStatus('success');
-                setEmail('');
+                setFormData({ name: '', city: '', salonName: '', email: '', mobile: '' });
             } else {
                 setStatus('error');
                 setMessage(result.message);
@@ -61,7 +87,7 @@ const WaitlistSection = () => {
                     </div>
                 </div>
 
-                <div className="w-full max-w-md bg-white/5 border border-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl shadow-[#FFB6A3]/5 mx-auto">
+                <div className="w-full max-w-lg bg-white/5 border border-white/10 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl shadow-[#FFB6A3]/5 mx-auto">
                     {status === 'success' ? (
                         <div className="flex flex-col items-center justify-center py-6 text-center space-y-3 animate-in fade-in zoom-in duration-300">
                             <div className="w-14 h-14 md:w-16 md:h-16 bg-[#07944F]/20 rounded-full flex items-center justify-center mb-2">
@@ -78,41 +104,130 @@ const WaitlistSection = () => {
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            <div className="space-y-2">
-                                <label htmlFor="waitlist-email" className="text-sm font-semibold text-white block text-left">
-                                    Get early access
-                                </label>
-                                <div className="flex flex-col sm:flex-row gap-3">
-                                    <input
-                                        type="email"
-                                        id="waitlist-email"
-                                        required
-                                        placeholder="jane@example.com"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="w-full sm:flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#FFB6A3] transition-all placeholder:text-gray-500 text-white"
-                                    />
-                                    <button
-                                        type="submit"
-                                        disabled={status === 'loading'}
-                                        className="w-full sm:w-auto bg-white text-[#140000] px-6 py-3 sm:py-0 rounded-xl font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center min-w-[120px]"
-                                    >
-                                        {status === 'loading' ? (
-                                            <div className="w-5 h-5 border-2 border-[#140000]/30 border-t-[#140000] rounded-full animate-spin"></div>
-                                        ) : (
-                                            <span className="flex items-center gap-1">Join <ChevronRight size={16} /></span>
-                                        )}
-                                    </button>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {/* Name */}
+                                <div className="space-y-2">
+                                    <label htmlFor="name" className="text-xs font-semibold text-gray-400 ml-1 uppercase">Full Name</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                                            <User size={16} />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            required
+                                            placeholder="Jane Doe"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            className="w-full bg-white/10 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#FFB6A3] focus:border-transparent transition-all placeholder:text-gray-600 text-white"
+                                        />
+                                    </div>
                                 </div>
-                                {status === 'error' && (
-                                    <p className="text-xs text-red-400 text-left font-semibold animate-in fade-in slide-in-from-top-1">
-                                        {message}
-                                    </p>
-                                )}
-                                <p className="text-xs text-gray-500 text-left">
-                                    Join 2,000+ others waiting for launch.
-                                </p>
+
+                                {/* City */}
+                                <div className="space-y-2">
+                                    <label htmlFor="city" className="text-xs font-semibold text-gray-400 ml-1 uppercase">City</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                                            <MapPin size={16} />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            name="city"
+                                            id="city"
+                                            required
+                                            placeholder="Gold Coast"
+                                            value={formData.city}
+                                            onChange={handleChange}
+                                            className="w-full bg-white/10 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#FFB6A3] focus:border-transparent transition-all placeholder:text-gray-600 text-white"
+                                        />
+                                    </div>
+                                </div>
                             </div>
+
+                            {/* Salon Name */}
+                            <div className="space-y-2">
+                                <label htmlFor="salonName" className="text-xs font-semibold text-gray-400 ml-1 uppercase">Salon / Business Name</label>
+                                <div className="relative">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                                        <Building2 size={16} />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        name="salonName"
+                                        id="salonName"
+                                        required
+                                        placeholder="Glow Beauty Studio"
+                                        value={formData.salonName}
+                                        onChange={handleChange}
+                                        className="w-full bg-white/10 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#FFB6A3] focus:border-transparent transition-all placeholder:text-gray-600 text-white"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {/* Email */}
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="text-xs font-semibold text-gray-400 ml-1 uppercase">Email Address</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                                            <Mail size={16} />
+                                        </div>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            required
+                                            placeholder="jane@example.com"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            className="w-full bg-white/10 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#FFB6A3] focus:border-transparent transition-all placeholder:text-gray-600 text-white"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Mobile */}
+                                <div className="space-y-2">
+                                    <label htmlFor="mobile" className="text-xs font-semibold text-gray-400 ml-1 uppercase">Mobile (Optional)</label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                                            <Smartphone size={16} />
+                                        </div>
+                                        <input
+                                            type="tel"
+                                            name="mobile"
+                                            id="mobile"
+                                            placeholder="0400 000 000"
+                                            value={formData.mobile}
+                                            onChange={handleChange}
+                                            className="w-full bg-white/10 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#FFB6A3] focus:border-transparent transition-all placeholder:text-gray-600 text-white"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button
+                                type="submit"
+                                disabled={status === 'loading'}
+                                className="w-full bg-white text-[#140000] mt-4 px-6 py-4 rounded-xl font-bold hover:bg-gray-200 transition-colors flex items-center justify-center shadow-lg"
+                            >
+                                {status === 'loading' ? (
+                                    <div className="w-5 h-5 border-2 border-[#140000]/30 border-t-[#140000] rounded-full animate-spin"></div>
+                                ) : (
+                                    <span className="flex items-center gap-2">Join Waitlist <ChevronRight size={18} /></span>
+                                )}
+                            </button>
+
+                            {status === 'error' && (
+                                <p className="text-xs text-red-400 text-center font-semibold animate-in fade-in slide-in-from-top-1 bg-red-400/10 p-2 rounded-lg border border-red-400/20">
+                                    {message}
+                                </p>
+                            )}
+
+                            <p className="text-xs text-gray-500 text-center pt-2">
+                                Join 2,000+ others waiting for launch.
+                            </p>
                         </form>
                     )}
                 </div>
