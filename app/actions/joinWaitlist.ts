@@ -161,17 +161,24 @@ export async function joinWaitlist(data: JoinWaitlistData): Promise<ActionRespon
   }
 
   try {
+    console.log(`[JoinWaitlist] Attempting to register: ${email}, Name: ${name}, Salon: ${salonName}`);
+
     // 1. Insert into Supabase
-    const { error: dbError } = await supabase
+    // We omit 'created_at' fields to let the Database handle the Timezone logic via DEFAULT values
+    const { data: insertedData, error: dbError } = await supabase
       .from("waitlist")
       .insert([{
         email,
         name,
         city,
         salon_name: salonName,
-        mobile,
-        created_at: new Date().toISOString()
-      }]);
+        mobile
+      }])
+      .select(); // Select back to confirm insertion
+
+    if (insertedData) {
+      console.log(`[JoinWaitlist] DB Insert Success. ID: ${insertedData[0]?.id}`);
+    }
 
     // Handle duplicate key error (code 23505 in Postgres)
     if (dbError) {

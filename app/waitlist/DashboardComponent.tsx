@@ -28,8 +28,8 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
 
     const exportCSV = () => {
         const csvContent = "data:text/csv;charset=utf-8,"
-            + "Name,Salon,City,Mobile,Email,Date Joined\n"
-            + data.map(e => `"${e.name || ''}","${e.salon_name || ''}","${e.city || ''}","${e.mobile || ''}","${e.email}",${new Date(e.created_at).toLocaleString()}`).join("\n");
+            + "Name,Salon,City,Mobile,Email,Date Joined (UTC),Date Joined (AEST),Date Joined (IST)\n"
+            + data.map(e => `"${e.name || ''}","${e.salon_name || ''}","${e.city || ''}","${e.mobile || ''}","${e.email}",${new Date(e.created_at).toISOString()},${new Date(e.created_at_aest).toISOString()},${new Date(e.created_at_ist).toISOString()}`).join("\n");
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
@@ -45,10 +45,8 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
             <nav className="bg-white border-b border-[#F3F3F5] px-6 py-4 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#FFB6A3] to-[#FC69C3] rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                            M
-                        </div>
-                        <span className="font-bold text-lg tracking-tight">Founders<span className="text-[#FFB6A3]">.</span></span>
+                        <img src="/MyGlo3D_4.png" alt="MyGlo" className="w-8 h-8 object-contain" />
+                        <span className="font-bold text-lg tracking-tight">MyGlo</span>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -65,7 +63,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
 
             <main className="max-w-7xl mx-auto px-6 py-12">
                 {/* Header Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                     <div className="bg-white p-6 rounded-2xl border border-[#F3F3F5] shadow-sm">
                         <div className="flex items-start justify-between mb-4">
                             <div className="p-2 bg-[#FFF3F0] rounded-lg text-[#E06052]">
@@ -86,21 +84,6 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                         <div className="text-3xl font-bold text-[#140000] mb-1">{recentCount}</div>
                         <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Joined Last 24h</div>
                     </div>
-
-                    <div className="bg-gradient-to-br from-[#140000] to-[#2a0a0a] p-6 rounded-2xl border border-[#140000] shadow-lg text-white">
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="p-2 bg-white/10 rounded-lg text-white">
-                                <Download size={20} />
-                            </div>
-                        </div>
-                        <button
-                            onClick={exportCSV}
-                            className="w-full py-2 bg-white text-[#140000] rounded-lg text-sm font-bold hover:bg-[#FFB6A3] transition-colors"
-                        >
-                            Export CSV
-                        </button>
-                        <div className="text-[10px] text-white/50 mt-3 uppercase tracking-wide text-center">Download full list</div>
-                    </div>
                 </div>
 
                 {/* Controls */}
@@ -115,8 +98,19 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                             className="w-full pl-10 pr-4 py-3 bg-white border border-[#E5E5E5] rounded-xl text-sm outline-none focus:border-[#FFB6A3] focus:ring-2 focus:ring-[#FFB6A3]/10 transition-all"
                         />
                     </div>
-                    <div className="text-xs font-medium text-[#888080]">
-                        Showing <span className="text-[#140000] font-bold">{filteredData.length}</span> results
+
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={exportCSV}
+                            className="flex items-center gap-2 px-3 py-2 bg-white border border-[#E5E5E5] rounded-lg text-xs font-bold text-[#140000] hover:bg-[#F3F3F5] transition-colors shadow-sm"
+                            title="Download CSV"
+                        >
+                            <Download size={14} />
+                            Export
+                        </button>
+                        <div className="text-xs font-medium text-[#888080]">
+                            Showing <span className="text-[#140000] font-bold">{filteredData.length}</span> results
+                        </div>
                     </div>
                 </div>
 
@@ -130,7 +124,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                                     <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">Name/Salon</th>
                                     <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">Contact</th>
                                     <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider">Location</th>
-                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider text-right">Date Joined</th>
+                                    <th className="py-4 px-6 text-xs font-bold text-[#888080] uppercase tracking-wider text-right">Timestamps (UTC / AEST / IST)</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-[#F3F3F5]">
@@ -180,19 +174,28 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
 
                                             {/* Date */}
                                             <td className="py-4 px-6 text-right">
-                                                <div className="flex flex-col items-end gap-1">
-                                                    <span className="text-sm text-[#534B4B]">
-                                                        {new Date(entry.created_at).toLocaleDateString("en-AU", {
-                                                            day: "numeric",
-                                                            month: "short"
+                                                <div className="flex flex-col items-end gap-2">
+                                                    <div className="flex items-center gap-2 text-xs text-[#534B4B]" title="UTC">
+                                                        <span className="font-mono bg-gray-100 px-1 rounded">UTC</span>
+                                                        {new Date(entry.created_at).toLocaleString("en-AU", {
+                                                            month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
+                                                            timeZone: 'UTC'
                                                         })}
-                                                    </span>
-                                                    <span className="text-[#D4D4D4] text-[10px]">
-                                                        {new Date(entry.created_at).toLocaleTimeString("en-AU", {
-                                                            hour: "2-digit",
-                                                            minute: "2-digit"
+                                                    </div>
+                                                    <div className="flex items-center gap-2 text-xs text-[#534B4B]" title="AEST (Brisbane)">
+                                                        <span className="font-mono bg-blue-50 text-blue-600 px-1 rounded">AEST</span>
+                                                        {new Date(entry.created_at_aest).toLocaleString("en-AU", {
+                                                            month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
+                                                            timeZone: 'UTC'
                                                         })}
-                                                    </span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 text-xs text-[#534B4B]" title="IST (Kolkata)">
+                                                        <span className="font-mono bg-orange-50 text-orange-600 px-1 rounded">IST</span>
+                                                        {new Date(entry.created_at_ist).toLocaleString("en-IN", {
+                                                            month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
+                                                            timeZone: 'UTC'
+                                                        })}
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
