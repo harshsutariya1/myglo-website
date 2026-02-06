@@ -59,7 +59,7 @@ const HeroSection = () => {
                     <div className="flex flex-col sm:flex-row gap-3 sm:items-center mt-2">
                         <div className="text-xs font-semibold text-[#534B4B] flex items-center gap-2">
                             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#FAFAFA] text-[#534B4B] border border-gray-100">✨</span>
-                            Salons: <span className="underline decoration-dotted">0% Fees for 3 Months</span>
+                            <span className="underline decoration-dotted">The new standard for beauty</span>
                         </div>
                     </div>
                 </div>

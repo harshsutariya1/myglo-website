@@ -33,14 +33,14 @@ const FeaturesSection = () => {
                             className={`relative z-10 px-6 md:px-10 py-2.5 rounded-xl text-sm font-bold transition-colors duration-300 min-w-[140px] md:min-w-[160px] ${activeFeatureTab === 'client' ? 'text-white' : 'text-gray-500 hover:text-[#140000]'
                                 }`}
                         >
-                            I'm a Client
+                            Beauty Lovers
                         </button>
                         <button
                             onClick={() => setActiveFeatureTab('partner')}
                             className={`relative z-10 px-6 md:px-10 py-2.5 rounded-xl text-sm font-bold transition-colors duration-300 min-w-[140px] md:min-w-[160px] ${activeFeatureTab === 'partner' ? 'text-white' : 'text-gray-500 hover:text-[#140000]'
                                 }`}
                         >
-                            I'm a Partner
+                            Salons & Pros
                         </button>
                     </div>
                 </div>

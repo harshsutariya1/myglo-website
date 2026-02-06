@@ -224,10 +224,6 @@ const WaitlistSection = () => {
                                     {message}
                                 </p>
                             )}
-
-                            <p className="text-xs text-gray-500 text-center pt-2">
-                                Join 2,000+ others waiting for launch.
-                            </p>
                         </form>
                     )}
                 </div>

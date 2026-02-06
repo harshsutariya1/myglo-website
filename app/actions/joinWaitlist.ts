@@ -53,16 +53,16 @@ const getWelcomeEmailHtml = () => `
           <tr>
             <td class="content-padding" style="padding: 48px 48px;">
               <h2 style="color: #140000; font-size: 24px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.3;">
-                Welcome to the inner circle. <span style="color: #FFB6A3;">✨</span>
+                Welcome to the Future of Beauty Business. <span style="color: #FFB6A3;">✨</span>
               </h2>
               
               <p style="color: #534B4B; font-size: 16px; line-height: 1.7; margin: 0 0 24px 0;">
-                You've just secured your spot for the future of beauty. 
-                We represent the new standard in beauty booking—combining effortless discovery with instant access to the Gold Coast's best artists. Get ready for an experience that's as beautiful as the results.
+                You've just taken the first step toward elevating your salon. 
+                MyGlo is designed to give you effortless control over bookings, maximize your visibility, and connect you with serious clients in the Gold Coast.
               </p>
               
               <p style="color: #534B4B; font-size: 16px; line-height: 1.7; margin: 0 0 32px 0;">
-                You are now on our priority waitlist. We will notify you the moment MyGlo launches in the Gold Coast.
+                You are now on our priority waitlist for service providers. We will notify you the moment we launch so you can claim your profile and start growing.
               </p>
 
               <!-- Perks Section -->
@@ -72,20 +72,20 @@ const getWelcomeEmailHtml = () => `
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td width="24" valign="top" style="padding-bottom: 16px;">
-                      <span style="font-size: 18px;">💎</span>
+                      <span style="font-size: 18px;">🚀</span>
                     </td>
                     <td style="padding-left: 16px; padding-bottom: 16px;">
                       <p style="margin: 0; color: #140000; font-weight: 600; font-size: 15px;">Early Access</p>
-                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">Be the first to download the app and secure appointments.</p>
+                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">Be the first to set up your portfolio and attract new clients.</p>
                     </td>
                   </tr>
                   <tr>
                     <td width="24" valign="top">
-                      <span style="font-size: 18px;">🎁</span>
+                      <span style="font-size: 18px;">💎</span>
                     </td>
                     <td style="padding-left: 16px;">
-                      <p style="margin: 0; color: #140000; font-weight: 600; font-size: 15px;">Exclusive Launch Offers</p>
-                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">Unlock special discounts and rewards just for our founding members.</p>
+                      <p style="margin: 0; color: #140000; font-weight: 600; font-size: 15px;">Launch Special</p>
+                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">Enjoy 0% fees for the first 3 months.</p>
                     </td>
                   </tr>
                 </table>
@@ -211,49 +211,78 @@ export async function joinWaitlist(data: JoinWaitlistData): Promise<ActionRespon
         html: `
         <!DOCTYPE html>
         <html>
-        <body style="margin: 0; padding: 40px 20px; background-color: #F3F3F5; font-family: 'Plus Jakarta Sans', sans-serif;">
-          <table align="center" border="0" cellspacing="0" cellpadding="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-            <tr>
-              <td style="background-color: #140000; padding: 32px; text-align: center;">
-                <h1 style="color: #ffffff; margin: 0; font-size: 24px;">🚀 New Signup</h1>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 40px;">
-                <div style="background-color: #F9FAFB; padding: 24px; border-radius: 12px; border: 1px solid #E5E7EB;">
-                  
-                  <div style="margin-bottom: 16px;">
-                    <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Name</p>
-                    <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${name}</p>
-                  </div>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+             body { margin: 0; padding: 0; background-color: #F3F3F5; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+             .container { max-width: 600px; width: 100%; margin: 40px auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+             .header { background-color: #140000; padding: 32px; text-align: center; }
+             .content { padding: 40px 32px; }
+             .card { background-color: #F8F9FA; border-radius: 12px; border: 1px solid #E9ECEF; padding: 24px; }
+             .label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #6C757D; letter-spacing: 0.5px; margin-bottom: 4px; }
+             .value { font-size: 16px; font-weight: 600; color: #212529; margin: 0; }
+             .row { margin-bottom: 20px; }
+             .cta-button { display: inline-block; background-color: #140000; color: #ffffff; padding: 14px 28px; font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 8px; margin-top: 24px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <!-- Header -->
+            <div class="header">
+               <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 600;">MyGlo Admin Notification</h1>
+            </div>
 
-                  <div style="margin-bottom: 16px;">
-                    <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Salon/Business</p>
-                    <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${salonName}</p>
-                  </div>
+            <!-- Content -->
+            <div class="content">
+              <div style="text-align: center; margin-bottom: 32px;">
+                <span style="background-color: #ECFDF5; color: #059669; padding: 6px 12px; border-radius: 100px; font-size: 12px; font-weight: 700; text-transform: uppercase; border: 1px solid #D1FAE5;">New Waitlist Lead</span>
+                <h2 style="font-size: 24px; color: #140000; margin: 16px 0 8px 0;">${salonName}</h2>
+                <p style="color: #6C757D; margin: 0; font-size: 15px;">just joined the waitlist.</p>
+              </div>
 
-                  <div style="display: flex; gap: 24px; margin-bottom: 16px;">
-                     <div>
-                        <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">City</p>
-                        <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${city}</p>
-                     </div>
-                     <div>
-                        <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Mobile</p>
-                        <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">${mobile || 'N/A'}</p>
-                     </div>
-                  </div>
-
-                  <div>
-                    <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 11px; font-weight: 700; text-transform: uppercase;">Email</p>
-                    <p style="margin: 0; color: #111827; font-size: 16px; font-weight: 600;">
-                      <a href="mailto:${email}" style="color: #111827; text-decoration: none;">${email}</a>
-                    </p>
-                  </div>
-
+              <div class="card">
+                <div class="row">
+                   <div style="display: inline-block; width: 48%; vertical-align: top;">
+                      <p class="label">Contact Name</p>
+                      <p class="value">${name}</p>
+                   </div>
+                   <div style="display: inline-block; width: 48%; vertical-align: top;">
+                      <p class="label">City</p>
+                      <p class="value">${city}</p>
+                   </div>
                 </div>
-              </td>
-            </tr>
-          </table>
+                
+                <div class="row">
+                   <div style="display: inline-block; width: 48%; vertical-align: top;">
+                      <p class="label">Email</p>
+                      <p class="value"><a href="mailto:${email}" style="color: #140000; text-decoration: none; border-bottom: 1px dotted #140000;">${email}</a></p>
+                   </div>
+                   <div style="display: inline-block; width: 48%; vertical-align: top;">
+                      <p class="label">Mobile</p>
+                      <p class="value">${mobile || '<span style="color: #ADB5BD; font-weight: 400;">Not provided</span>'}</p>
+                   </div>
+                </div>
+
+                <div style="border-top: 1px solid #E9ECEF; margin: 16px 0;"></div>
+                
+                <div>
+                   <p class="label" style="margin-bottom: 8px;">Quick Actions</p>
+                   <p style="margin: 0; font-size: 13px;">
+                      <a href="mailto:${email}?subject=Welcome%20to%20MyGlo&body=Hi%20${name.split(' ')[0]}," style="color: #E06052; text-decoration: none; font-weight: 600;">Email this lead &rarr;</a>
+                   </p>
+                </div>
+              </div>
+
+              <div style="text-align: center;">
+                 <a href="https://myglo.app/waitlist" class="cta-button">View Full Dashboard</a>
+              </div>
+            </div>
+            
+            <!-- Footer -->
+            <div style="background-color: #F8F9FA; padding: 16px; text-align: center; border-top: 1px solid #E9ECEF;">
+               <p style="font-size: 11px; color: #ADB5BD; margin: 0;">Sent automatically by MyGlo Website</p>
+            </div>
+          </div>
         </body>
         </html>
         `,
