@@ -22,6 +22,14 @@ const FaqSection = () => {
         {
             question: "How is MyGlo different from Instagram?",
             answer: "Instagram is for everything; MyGlo is specifically for beauty. Our search is built for services (e.g., 'Blonde Specialist' or 'Nail Art'), and every post links directly to a booking option. No more DMing for appointments."
+        },
+        {
+            question: "Can I switch between the Free and Pro plans?",
+            answer: "Absolutely. You can request a plan switch at any time. To keep billing simple and predictable, your new plan will automatically take effect on the 1st of the next month."
+        },
+        {
+            question: "How do I get paid?",
+            answer: "We use Stripe Connect for secure, automated payouts. Funds are transferred directly to your bank account, and we handle all the split payments and invoices for you."
         }
     ];
 

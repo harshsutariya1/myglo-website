@@ -7,6 +7,7 @@ import ValuePropositions from './components/ValuePropositions';
 import WhyMyGlo from './components/WhyMyGlo';
 import FeaturesSection from './components/FeaturesSection';
 import BusinessSuite from './components/BusinessSuite';
+import PricingSection from './components/PricingSection';
 import CommunitySpotlight from './components/CommunitySpotlight';
 import TrustSafety from './components/TrustSafety';
 import RoadmapSection from './components/RoadmapSection';
@@ -27,6 +28,7 @@ const App = () => {
       <WhyMyGlo />
       <FeaturesSection />
       <BusinessSuite />
+      <PricingSection />
       <CommunitySpotlight />
       <TrustSafety />
       <RoadmapSection />
