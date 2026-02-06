@@ -22,7 +22,7 @@ const jsonLd = {
   '@type': 'Organization',
   name: 'MyGlo',
   url: 'https://myglo.app',
-  logo: 'https://myglo.app/MyGlo_logo2.png',
+  logo: 'https://myglo.app/MyGlo3D_4.png',
   description: 'MyGlo is a beauty booking platform that allows clients to book appointments with beauty professionals in their area.',
   sameAs: [
     'https://twitter.com/mygloapp',

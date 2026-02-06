@@ -53,8 +53,8 @@ const CommunitySpotlight = () => {
                         {/* Community Stats */}
                         <div className="flex gap-8 border-t border-[#E5E5E5] pt-8">
                             <div>
-                                <div className="text-2xl font-bold text-[#140000]">500+</div>
-                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Salons Waiting</div>
+                                <div className="text-2xl font-bold text-[#140000]">Growing</div>
+                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Community</div>
                             </div>
                             <div>
                                 <div className="text-2xl font-bold text-[#140000]">2026</div>
