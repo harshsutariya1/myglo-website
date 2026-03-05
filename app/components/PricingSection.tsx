@@ -26,7 +26,7 @@ const PricingSection = () => {
                     {/* Option A: Freelancer */}
                     <div className="group relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-[#FFB6A3]/50 transition-all duration-300 hover:-translate-y-1 flex flex-col">
                         <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[#FFB6A3]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        
+
                         <div className="mb-8">
                             <h3 className="text-2xl font-bold mb-2">The Freelancer</h3>
                             <p className="text-gray-400 text-sm">Perfect for mobile techs, solo artists & startups.</p>
@@ -39,9 +39,9 @@ const PricingSection = () => {
                             </div>
                             <div className="mt-2 text-[#FFB6A3] font-semibold flex items-center gap-2">
                                 <Zap size={16} className="fill-current" />
-                                7.5% per booking
+                                5.5% per new client
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">Only pay when you make money.</p>
+                            <p className="text-xs text-gray-500 mt-2">Only pay when you get new customers.</p>
                         </div>
 
                         <ul className="space-y-4 mb-8 flex-grow">
@@ -113,13 +113,13 @@ const PricingSection = () => {
                     <div className="relative rounded-3xl overflow-hidden">
                         {/* Gradient Border Effect */}
                         <div className="absolute inset-0 bg-gradient-to-r from-[#FFB6A3] via-[#E06052] to-[#FFB6A3] opacity-20"></div>
-                        
+
                         <div className="relative bg-[#1a0f0f]/80 backdrop-blur-xl p-8 md:p-12 border border-white/10 m-[1px] rounded-[23px] flex flex-col md:flex-row items-center gap-8 md:gap-12">
                             <div className="shrink-0 relative">
                                 <div className="absolute inset-0 bg-[#E06052] blur-2xl opacity-20"></div>
                                 <ShieldCheck size={80} className="text-[#E06052] relative z-10" />
                             </div>
-                            
+
                             <div className="flex-grow text-center md:text-left">
                                 <h3 className="text-2xl font-bold text-white mb-3">The "Safety Cap" Guarantee 🛡️</h3>
                                 <p className="text-gray-300 leading-relaxed mb-4">
@@ -137,7 +137,7 @@ const PricingSection = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     <p className="text-center text-gray-500 text-sm mt-8 max-w-2xl mx-auto">
                         * All plans include secure payments via Stripe Connect. Standard credit card processing fees apply.
                     </p>
