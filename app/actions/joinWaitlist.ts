@@ -165,7 +165,7 @@ export async function joinWaitlist(data: JoinWaitlistData): Promise<ActionRespon
 
     // 1. Insert into Supabase
     // We omit 'created_at' fields to let the Database handle the Timezone logic via DEFAULT values
-    const { data: insertedData, error: dbError } = await supabase
+    const { error: dbError } = await supabase
       .from("waitlist")
       .insert([{
         email,
@@ -173,11 +173,10 @@ export async function joinWaitlist(data: JoinWaitlistData): Promise<ActionRespon
         city,
         salon_name: salonName,
         mobile
-      }])
-      .select(); // Select back to confirm insertion
+      }]); // No .select() since anon users don't have read access by default
 
-    if (insertedData) {
-      console.log(`[JoinWaitlist] DB Insert Success. ID: ${insertedData[0]?.id}`);
+    if (!dbError) {
+      console.log(`[JoinWaitlist] DB Insert Success.`);
     }
 
     // Handle duplicate key error (code 23505 in Postgres)
