@@ -1,11 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { WaitlistEntry, logoutAction } from "@/app/actions/founderActions";
-import { Download, Search, LogOut, Users, RefreshCw, Calendar, Mail, MapPin, Building2, Phone } from "lucide-react";
+import { Download, Search, LogOut, Users, RefreshCw, Calendar, Mail, MapPin, Building2, Phone, Loader2 } from "lucide-react";
 
 export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) {
+    const router = useRouter();
     const [searchTerm, setSearchTerm] = useState("");
+    const [isRefreshing, setIsRefreshing] = useState(false);
+
+    const handleRefresh = async () => {
+        setIsRefreshing(true);
+        router.refresh();
+        setTimeout(() => setIsRefreshing(false), 500); // Visual feedback wrapper
+    };
 
     // Filter logic
     const filteredData = data.filter((entry) =>
@@ -100,6 +109,15 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                     </div>
 
                     <div className="flex items-center gap-4">
+                        <button
+                            onClick={handleRefresh}
+                            disabled={isRefreshing}
+                            className={`flex items-center gap-2 px-3 py-2 bg-white border border-[#E5E5E5] rounded-lg text-xs font-bold text-[#140000] hover:bg-[#F3F3F5] transition-colors shadow-sm ${isRefreshing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            title="Refresh Data"
+                        >
+                            {isRefreshing ? <Loader2 size={14} className="animate-spin" /> : <RefreshCw size={14} />}
+                            Refresh
+                        </button>
                         <button
                             onClick={exportCSV}
                             className="flex items-center gap-2 px-3 py-2 bg-white border border-[#E5E5E5] rounded-lg text-xs font-bold text-[#140000] hover:bg-[#F3F3F5] transition-colors shadow-sm"
