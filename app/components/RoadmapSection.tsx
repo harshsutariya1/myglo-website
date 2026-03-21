@@ -81,8 +81,8 @@ const RoadmapSection = () => {
                                 <div className="md:hidden absolute top-4 -left-2 w-4 h-4 bg-[#FAFAFA] border-b border-l border-[#E5E5E5] rotate-45 group-hover:bg-white transition-colors"></div>
 
                                 <span className="text-[#888080] font-bold text-xs uppercase tracking-wider mb-2 block">May 2026</span>
-                                <h3 className="font-bold text-lg mb-2 text-[#140000]">GC Launch</h3>
-                                <p className="text-sm text-[#534B4B]">Official launch in Gold Coast, Australia. First 500 salons ready to go.</p>
+                                <h3 className="font-bold text-lg mb-2 text-[#140000]">Australia Launch</h3>
+                                <p className="text-sm text-[#534B4B]">Official launch across Australia. First 500 salons ready to go.</p>
                             </div>
                         </div>
 

@@ -25,7 +25,7 @@ const HeroSection = () => {
             <div className="space-y-8">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF3F0] border border-[#FFB6A3]/30">
                     <span className="w-2 h-2 rounded-full bg-[#E06052] animate-pulse"></span>
-                    <span className="text-xs font-semibold text-[#E06052] uppercase tracking-wider">Coming Soon to Gold Coast</span>
+                    <span className="text-xs font-semibold text-[#E06052] uppercase tracking-wider">Coming Soon to Australia</span>
                 </div>
 
                 <h1 className="text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-[#140000]">

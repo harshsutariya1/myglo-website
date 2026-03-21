@@ -22,7 +22,7 @@ const CommunitySpotlight = () => {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E06052] opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E06052]"></span>
                             </span>
-                            <span className="text-xs font-bold text-[#E06052] uppercase tracking-wider">Gold Coast Community</span>
+                            <span className="text-xs font-bold text-[#E06052] uppercase tracking-wider">Australian Community</span>
                         </div>
 
                         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#140000]">
@@ -30,7 +30,7 @@ const CommunitySpotlight = () => {
                         </h2>
 
                         <p className="text-[#534B4B] text-lg leading-relaxed mb-8">
-                            MyGlo isn't just software; it's a thriving ecosystem. Connect with other beauty professionals, share your latest creations, and set the trends for the Gold Coast beauty scene.
+                            MyGlo isn't just software; it's a thriving ecosystem. Connect with other beauty professionals, share your latest creations, and set the trends for the Australian beauty scene.
                         </p>
 
                         <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -58,7 +58,7 @@ const CommunitySpotlight = () => {
                             </div>
                             <div>
                                 <div className="text-2xl font-bold text-[#140000]">2026</div>
-                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Gold Coast Launch</div>
+                                <div className="text-xs font-semibold text-[#888080] uppercase tracking-wide">Australia Launch</div>
                             </div>
                             <div>
                                 <div className="text-2xl font-bold text-[#140000]">1st</div>

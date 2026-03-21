@@ -70,7 +70,7 @@ const ContactSection = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-lg">Location</h3>
-                                    <p className="text-[#534B4B]">Gold Coast, Australia</p>
+                                    <p className="text-[#534B4B]">Australia</p>
                                 </div>
                             </div>
                         </div>

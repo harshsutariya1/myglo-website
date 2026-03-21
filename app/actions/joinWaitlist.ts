@@ -58,7 +58,7 @@ const getWelcomeEmailHtml = () => `
               
               <p style="color: #534B4B; font-size: 16px; line-height: 1.7; margin: 0 0 24px 0;">
                 You've just taken the first step toward elevating your salon. 
-                MyGlo is designed to give you effortless control over bookings, maximize your visibility, and connect you with serious clients in the Gold Coast.
+                MyGlo is designed to give you effortless control over bookings, maximize your visibility, and connect you with serious clients across Australia.
               </p>
               
               <p style="color: #534B4B; font-size: 16px; line-height: 1.7; margin: 0 0 32px 0;">
@@ -117,7 +117,7 @@ const getWelcomeEmailHtml = () => `
                 &copy; ${new Date().getFullYear()} MyGlo Australia.
               </p>
               <p style="color: #D1D5DB; font-size: 12px; margin: 0;">
-                Made with <span style="color: #E06052;">&#10084;</span> in Gold Coast
+                Made with <span style="color: #E06052;">&#10084;</span> in Australia
               </p>
               <div style="margin-top: 24px;">
                  <a href="https://instagram.com/mygloapp" style="display: inline-block; margin: 0 8px; color: #140000; text-decoration: none; font-size: 12px; font-weight: 600;">Instagram</a>

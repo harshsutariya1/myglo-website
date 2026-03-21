@@ -78,7 +78,7 @@ const ProfileFeature = () => {
                                     <BadgeCheck size={16} className="text-[#07944F] fill-green-100" />
                                 </div>
                                 <div className="flex items-center gap-1 text-gray-500 text-xs mb-5">
-                                    <MapPin size={12} /> <span>Surfers Paradise, Gold Coast</span>
+                                    <MapPin size={12} /> <span>Sydney, Australia</span>
                                 </div>
 
                                 {/* Stats */}

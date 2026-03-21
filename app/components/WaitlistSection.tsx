@@ -146,7 +146,7 @@ const WaitlistSection = () => {
                                                 name="city"
                                                 id="city"
                                                 required
-                                                placeholder="Gold Coast"
+                                                placeholder="Sydney, NSW"
                                                 value={formData.city}
                                                 onChange={handleChange}
                                                 className="w-full bg-white/10 border border-white/20 rounded-xl pl-10 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#FFB6A3] focus:border-transparent transition-all placeholder:text-gray-600 text-white"

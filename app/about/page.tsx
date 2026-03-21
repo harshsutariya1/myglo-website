@@ -71,7 +71,7 @@ const AboutPage = () => {
                             {
                                 icon: <Heart size={24} />,
                                 title: "Community First",
-                                description: "We emphasize local connection. The Gold Coast beauty scene is unique, and we are building specifically to nurture it."
+                                description: "We emphasize local connection. The Australian beauty scene is unique, and we are building specifically to nurture it."
                             },
                             {
                                 icon: <ShieldCheck size={24} />,
@@ -102,7 +102,7 @@ const AboutPage = () => {
                     </div>
 
                     <div className="relative z-10 max-w-3xl mx-auto text-white">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">Born in the Gold Coast ☀️</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6">Born in Australia ☀️</h2>
                         <p className="text-gray-300 text-lg leading-relaxed mb-8">
                             MyGlo started with a frustration: why is it so hard to find good local beauty services? We looked at the options and saw clunky directories or chaotic Instagram DMs. We knew there had to be a better way.<br /><br />
                             So we built it. A platform that feels as premium as the services it hosts.

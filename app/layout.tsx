@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     default: "MyGlo - The All-in-One Beauty Booking Platform",
     template: "%s | MyGlo"
   },
-  description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Gold Coast.",
-  keywords: ["Beauty Booking", "Gold Coast Beauty", "Makeup Artist", "Hair Stylist", "Beauty Services", "MyGlo"],
+  description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Australia.",
+  keywords: ["Beauty Booking", "Australian Beauty", "Makeup Artist", "Hair Stylist", "Beauty Services", "MyGlo"],
   authors: [{ name: "MyGlo Team" }],
   creator: "MyGlo",
   publisher: "MyGlo",
@@ -57,14 +57,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "MyGlo - The All-in-One Beauty Booking Platform",
-    description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Gold Coast.",
+    description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Australia.",
     images: '/MyGlo_logo2.png',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: "MyGlo - The All-in-One Beauty Booking Platform",
-    description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Gold Coast.",
+    description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Australia.",
     images: '/MyGlo_logo2.png',
   },
 };

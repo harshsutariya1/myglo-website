@@ -9,7 +9,7 @@ const FaqSection = () => {
     const faqs = [
         {
             question: "When is MyGlo launching?",
-            answer: "We are launching exclusively in the Gold Coast, Australia in early 2026. Join our waitlist to be the first to know when we go live in your suburb."
+            answer: "We are launching across Australia in early 2026. Join our waitlist to be the first to know when we go live in your area."
         },
         {
             question: "Is MyGlo free for clients?",
