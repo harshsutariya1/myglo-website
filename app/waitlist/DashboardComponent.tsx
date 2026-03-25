@@ -10,6 +10,10 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
     const [searchTerm, setSearchTerm] = useState("");
     const [isRefreshing, setIsRefreshing] = useState(false);
 
+    React.useEffect(() => {
+        console.log(`[Dashboard Debug] Waitlist Dashboard loaded. Total rows loaded: ${data.length}`);
+    }, [data.length]);
+    
     const handleRefresh = async () => {
         setIsRefreshing(true);
         router.refresh();
@@ -27,6 +31,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
     // Stats
     const totalCount = data.length;
     const recentCount = data.filter(d => {
+        if (!d.created_at) return false;
         const diff = new Date().getTime() - new Date(d.created_at).getTime();
         return diff < (1000 * 60 * 60 * 24); // Last 24 hours
     }).length;
@@ -36,9 +41,11 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
     };
 
     const exportCSV = () => {
+        const safeIso = (dateStr?: string) => dateStr ? new Date(dateStr).toISOString() : '';
+        const escapeCsv = (str?: string) => `"${(str || '').replace(/"/g, '""')}"`;
         const csvContent = "data:text/csv;charset=utf-8,"
             + "Name,Salon,City,Mobile,Email,Date Joined (UTC),Date Joined (AEST),Date Joined (IST)\n"
-            + data.map(e => `"${e.name || ''}","${e.salon_name || ''}","${e.city || ''}","${e.mobile || ''}","${e.email}",${new Date(e.created_at).toISOString()},${new Date(e.created_at_aest).toISOString()},${new Date(e.created_at_ist).toISOString()}`).join("\n");
+            + data.map(e => `${escapeCsv(e.name)},${escapeCsv(e.salon_name)},${escapeCsv(e.city)},${escapeCsv(e.mobile)},"${e.email}",${safeIso(e.created_at)},${safeIso(e.created_at_aest)},${safeIso(e.created_at_ist)}`).join("\n");
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
@@ -150,7 +157,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                                     filteredData.map((entry, index) => (
                                         <tr key={entry.id || index} className="group hover:bg-[#FFFdFc] transition-colors">
                                             <td className="py-4 px-6 text-xs font-medium text-[#D4D4D4] group-hover:text-[#FFB6A3]">
-                                                {data.length - index}
+                                                {data.length - data.indexOf(entry)}
                                             </td>
 
                                             {/* Name & Salon */}
@@ -192,27 +199,27 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
 
                                             {/* Date */}
                                             <td className="py-4 px-6 text-right">
-                                                <div className="flex flex-col items-end gap-2">
+                                                <div className="flex flex-col items-end gap-2" suppressHydrationWarning>
                                                     <div className="flex items-center gap-2 text-xs text-[#534B4B]" title="UTC">
                                                         <span className="font-mono bg-gray-100 px-1 rounded">UTC</span>
-                                                        {new Date(entry.created_at).toLocaleString("en-AU", {
+                                                        {entry.created_at ? new Date(entry.created_at).toLocaleString("en-AU", {
                                                             month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
                                                             timeZone: 'UTC'
-                                                        })}
+                                                        }) : 'N/A'}
                                                     </div>
                                                     <div className="flex items-center gap-2 text-xs text-[#534B4B]" title="AEST (Brisbane)">
                                                         <span className="font-mono bg-blue-50 text-blue-600 px-1 rounded">AEST</span>
-                                                        {new Date(entry.created_at_aest).toLocaleString("en-AU", {
+                                                        {entry.created_at_aest ? new Date(entry.created_at_aest).toLocaleString("en-AU", {
                                                             month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
                                                             timeZone: 'UTC'
-                                                        })}
+                                                        }) : 'N/A'}
                                                     </div>
                                                     <div className="flex items-center gap-2 text-xs text-[#534B4B]" title="IST (Kolkata)">
                                                         <span className="font-mono bg-orange-50 text-orange-600 px-1 rounded">IST</span>
-                                                        {new Date(entry.created_at_ist).toLocaleString("en-IN", {
+                                                        {entry.created_at_ist ? new Date(entry.created_at_ist).toLocaleString("en-IN", {
                                                             month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
                                                             timeZone: 'UTC'
-                                                        })}
+                                                        }) : 'N/A'}
                                                     </div>
                                                 </div>
                                             </td>

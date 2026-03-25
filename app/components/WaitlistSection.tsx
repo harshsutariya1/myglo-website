@@ -46,6 +46,11 @@ const WaitlistSection = () => {
             });
 
             if (result.success) {
+                console.log("New Waitlist Entry successfully registered!", {
+                    email: formData.email,
+                    name: formData.name,
+                    salon: formData.salonName
+                });
                 setStatus('success');
                 setFormData({ name: '', city: '', salonName: '', email: '', mobile: '' });
             } else {
