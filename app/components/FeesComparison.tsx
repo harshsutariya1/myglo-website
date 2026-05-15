@@ -1,13 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { DollarSign, TrendingDown, Info, Calculator, Check } from 'lucide-react';
+import { useState } from 'react';
+import { TrendingDown, Calculator } from 'lucide-react';
 
 const FeesComparison = () => {
     const [monthlyRevenue, setMonthlyRevenue] = useState(2000);
-    const [competitorCommission, setCompetitorCommission] = useState(0);
-    const [competitorSubscription, setCompetitorSubscription] = useState(0);
-    const [myGloCost, setMyGloCost] = useState(0);
 
     // Constants
     const FRESHA_NEW_CLIENT_FEE = 0.20; // 20%
@@ -15,23 +12,15 @@ const FeesComparison = () => {
     const MYGLO_COMMISSION = 0.055; // 5.5%
     const MYGLO_CAP = 59; // Max fee
 
-    useEffect(() => {
-        // Assume the slider represents the new client revenue subject to fees
-
-        // Competitor 1: High Commission Model (20% on new clients)
-        setCompetitorCommission(Math.round(monthlyRevenue * FRESHA_NEW_CLIENT_FEE));
-
-        // Competitor 2: High Fixed Cost (e.g. Timely)
-        setCompetitorSubscription(TIMELY_SUBSCRIPTION);
-
-        // MyGlo Calculation (5.5% on new clients)
-        let calculatedFee = monthlyRevenue * MYGLO_COMMISSION;
-        if (calculatedFee >= MYGLO_CAP) {
-            calculatedFee = MYGLO_CAP;
-        }
-        setMyGloCost(Number(calculatedFee.toFixed(2)));
-
-    }, [monthlyRevenue]);
+    // Calculate derived values directly during render
+    const competitorCommission = Math.round(monthlyRevenue * FRESHA_NEW_CLIENT_FEE);
+    const competitorSubscription = TIMELY_SUBSCRIPTION;
+    
+    let calculatedFee = monthlyRevenue * MYGLO_COMMISSION;
+    if (calculatedFee >= MYGLO_CAP) {
+        calculatedFee = MYGLO_CAP;
+    }
+    const myGloCost = Number(calculatedFee.toFixed(2));
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('en-AU', {
@@ -52,7 +41,7 @@ const FeesComparison = () => {
             {/* Slider Input */}
             <div className="mb-8">
                 <div className="flex justify-between text-sm mb-2 text-gray-400">
-                    <span>New Client Revenue</span>
+                    <span>Booking Revenue</span>
                     <span className="text-white font-bold">{formatCurrency(monthlyRevenue)}</span>
                 </div>
                 <input
@@ -76,7 +65,7 @@ const FeesComparison = () => {
                 <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-transparent">
                     <div className="flex flex-col">
                         <span className="text-sm font-semibold text-gray-400">Other Apps (Commission)</span>
-                        <span className="text-xs text-gray-600">~20% fees on new clients</span>
+                        <span className="text-xs text-gray-600">~20% fees on bookings</span>
                     </div>
                     <div className="text-lg font-bold text-gray-300">
                         {formatCurrency(competitorCommission)} <span className="text-xs font-normal opacity-50">/mo (est)</span>
@@ -95,7 +84,7 @@ const FeesComparison = () => {
                 </div>
 
                 {/* MyGlo */}
-                <div className="relative overflow-hidden flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-[#FFB6A3]/20 to-[#E06052]/20 border border-[#FFB6A3]/50">
+                <div className="relative overflow-hidden flex items-center justify-between p-4 rounded-xl bg-linear-to-r from-[#FFB6A3]/20 to-[#E06052]/20 border border-[#FFB6A3]/50">
                     <div className="absolute inset-0 bg-white/5 animate-pulse"></div>
                     <div className="relative z-10 flex flex-col">
                         <div className="flex items-center gap-2">
@@ -121,7 +110,7 @@ const FeesComparison = () => {
                     <TrendingDown size={24} />
                     {formatCurrency((Math.max(competitorCommission, competitorSubscription) - myGloCost) * 12)}
                 </div>
-                <p className="text-[10px] text-gray-600 mt-2 max-w-[200px] mx-auto leading-tight">
+                <p className="text-[10px] text-gray-600 mt-2 max-w-50 mx-auto leading-tight">
                     *Savings calculated against standard competitor rates. Actual amounts may vary.
                 </p>
             </div>

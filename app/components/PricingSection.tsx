@@ -1,7 +1,6 @@
 "use client";
 
-import React from 'react';
-import { Check, ShieldCheck, Zap, Sparkles, HelpCircle } from 'lucide-react';
+import { Check, ShieldCheck, Zap, Sparkles } from 'lucide-react';
 
 const PricingSection = () => {
     return (
@@ -17,7 +16,7 @@ const PricingSection = () => {
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">Choose How You Grow</h2>
                     <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-                        Whether you're just starting out or running an empire, we have a model that fits. No hidden costs, no contracts.
+                        Whether you&apos;re just starting out or running an empire, we have a model that fits. No hidden costs, no contracts.
                     </p>
                 </div>
 
@@ -39,9 +38,9 @@ const PricingSection = () => {
                             </div>
                             <div className="mt-2 text-[#FFB6A3] font-semibold flex items-center gap-2">
                                 <Zap size={16} className="fill-current" />
-                                5.5% per new client
+                                5.5% per booking
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">Only pay when you get new customers.</p>
+                            <p className="text-xs text-gray-500 mt-2">Only pay when you get bookings.</p>
                         </div>
 
                         <ul className="space-y-4 mb-8 flex-grow">
@@ -121,7 +120,7 @@ const PricingSection = () => {
                             </div>
 
                             <div className="flex-grow text-center md:text-left">
-                                <h3 className="text-2xl font-bold text-white mb-3">The "Safety Cap" Guarantee 🛡️</h3>
+                                <h3 className="text-2xl font-bold text-white mb-3">The &quot;Safety Cap&quot; Guarantee 🛡️</h3>
                                 <p className="text-gray-300 leading-relaxed mb-4">
                                     Start on the commission plan without fear. If your commissions in a single month ever exceed <span className="text-[#FFB6A3] font-bold">$59</span>, we automatically cap your fee at $59.
                                 </p>
