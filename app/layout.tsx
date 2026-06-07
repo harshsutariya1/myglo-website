@@ -37,9 +37,20 @@ export const metadata: Metadata = {
     default: "MyGlo - The All-in-One Beauty Booking Platform",
     template: "%s | MyGlo"
   },
-  description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Australia.",
-  keywords: ["Beauty Booking", "Australian Beauty", "Makeup Artist", "Hair Stylist", "Beauty Services", "MyGlo"],
-  authors: [{ name: "MyGlo Team" }],
+  description: "MyGlo is an all-in-one beauty booking platform in Australia. Discover local makeup artists, hair stylists, and nail technicians. Book appointments instantly and join a thriving beauty community.",
+  keywords: [
+    "Beauty Booking App", 
+    "Australian Beauty Platform", 
+    "Find Makeup Artists", 
+    "Book Hair Stylist", 
+    "Nail Techs Australia", 
+    "Beauty Services Near Me", 
+    "MyGlo", 
+    "Salon Booking System", 
+    "Mobile Beauty Services", 
+    "Freelance Beauty Professionals"
+  ],
+  authors: [{ name: "MyGlo Team" }, { name: "Harsh Sutariya", url: "https://harshsutariya.dev" }],
   creator: "MyGlo",
   publisher: "MyGlo",
   formatDetection: {
@@ -57,14 +68,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "MyGlo - The All-in-One Beauty Booking Platform",
-    description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Australia.",
+    description: "MyGlo is an all-in-one beauty booking platform in Australia. Discover local makeup artists, hair stylists, and nail technicians. Book appointments instantly and join a thriving beauty community.",
     images: '/MyGlo_logo2.png',
     type: 'website',
+    siteName: 'MyGlo',
   },
   twitter: {
     card: 'summary_large_image',
     title: "MyGlo - The All-in-One Beauty Booking Platform",
-    description: "Discover local talent, book appointments instantly, and build your community. Coming soon to Australia.",
+    description: "MyGlo is an all-in-one beauty booking platform in Australia. Discover local makeup artists, hair stylists, and nail technicians. Book appointments instantly and join a thriving beauty community.",
     images: '/MyGlo_logo2.png',
   },
 };
@@ -82,6 +94,17 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `console.info(
+              "%c🚀 Developed by %cHarsh Sutariya%c | %charshsutariya.dev",
+              "color: #64748b; font-family: sans-serif; font-size: 12px;",
+              "color: #0f172a; font-family: sans-serif; font-size: 14px; font-weight: bold;",
+              "color: #cbd5e1; font-family: sans-serif; font-size: 12px;",
+              "color: #10b981; font-family: sans-serif; font-size: 12px; font-weight: bold; text-decoration: none;"
+            );`
+          }}
         />
         {children}
       </body>

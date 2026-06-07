@@ -34,9 +34,9 @@ const DiscoveryFeature = () => {
                                             src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
                                             alt="Lily Lashes"
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover"
                                             onError={() => setProfileError(true)}
-                                            sizes="32px"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-[#FFB6A3] to-[#FC69C3]"></div>
@@ -54,8 +54,8 @@ const DiscoveryFeature = () => {
                                     src="https://blobcdn.same.energy/d/69/dc/69dca881809cb72ab0ec9abf5f194fbf1e3cf464"
                                     alt="Post 1"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 300px"
                                 />
                                 <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold shadow-sm">
                                     $60

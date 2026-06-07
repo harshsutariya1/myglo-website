@@ -67,6 +67,7 @@ const Navbar = () => {
                                 src="/MyGlo3D_4.png"
                                 alt="MyGlo Logo"
                                 fill
+                                sizes="40px"
                                 className="object-contain"
                                 priority
                             />

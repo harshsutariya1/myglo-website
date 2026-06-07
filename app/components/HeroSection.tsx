@@ -131,9 +131,9 @@ const HeroSection = () => {
                                             src="https://blobcdn.same.energy/a/63/e6/63e66c7eefe6da2cf68830d6f5bf742191975df6"
                                             alt="Lily Lashes Beauty Profile"
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover"
                                             onError={() => setProfileError(true)}
-                                            sizes="32px"
                                         />
                                     ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-[#FFB6A3] to-[#FC69C3]"></div>
