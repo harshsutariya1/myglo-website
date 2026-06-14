@@ -99,7 +99,7 @@ const Navbar = () => {
                         >
                             Contact
                         </a>
-                        <a href="#" className="p-2 rounded-full hover:bg-[#F3F3F5] transition-colors hidden md:block">
+                        <a href="https://www.instagram.com/myglo.app?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full hover:bg-[#F3F3F5] transition-colors hidden md:block">
                             <Instagram size={20} color="#140000" />
                         </a>
                         <a href="mailto:hello@myglo.app" className="p-2 rounded-full hover:bg-[#F3F3F5] transition-colors hidden md:block">
@@ -163,7 +163,7 @@ const Navbar = () => {
                         </a>
 
                         <div className="flex gap-8 mt-4">
-                            <a href="#" className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
+                            <a href="https://www.instagram.com/myglo.app?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
                                 <Instagram size={28} color="#140000" />
                             </a>
                             <a href="mailto:hello@myglo.app" className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
