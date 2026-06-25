@@ -2,6 +2,7 @@
 
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
+import { revalidatePath } from "next/cache";
 
 // --- Configuration & Types ---
 
@@ -289,6 +290,8 @@ export async function joinWaitlist(data: JoinWaitlistData): Promise<ActionRespon
     } catch (adminErr) {
       console.error("Failed to send admin notification:", adminErr);
     }
+
+    revalidatePath("/waitlist");
 
     return { success: true, message: "Successfully joined!" };
 

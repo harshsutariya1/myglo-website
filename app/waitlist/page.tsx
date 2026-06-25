@@ -4,6 +4,8 @@ import LoginComponent from './LoginComponent';
 import DashboardComponent from './DashboardComponent';
 import { AlertTriangle } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
     title: 'Founder Access | MyGlo',
     robots: 'noindex, nofollow'
