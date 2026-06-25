@@ -3,6 +3,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 // --- Configuration & Types ---
 
@@ -137,29 +138,31 @@ const getWelcomeEmailHtml = () => `
 
 // --- Server Action ---
 
-type JoinWaitlistData = {
-  email: string;
-  name: string;
-  city: string;
-  salonName: string;
-  mobile?: string;
-};
+const waitlistSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(2).max(100),
+  city: z.string().min(2).max(100),
+  salonName: z.string().min(2).max(100),
+  mobile: z.string().optional(),
+  companyWebsite: z.string().optional(),
+});
+
+type JoinWaitlistData = z.infer<typeof waitlistSchema>;
 
 export async function joinWaitlist(data: JoinWaitlistData): Promise<ActionResponse> {
-  const { email, name, city, salonName, mobile } = data;
+  // 1. Honeypot check
+  if (data.companyWebsite && data.companyWebsite.trim().length > 0) {
+    console.log("[JoinWaitlist] Bot detected via honeypot. Skipping insertion.");
+    return { success: true, message: "Successfully joined!" };
+  }
 
-  if (!email || !email.includes("@")) {
-    return { success: false, message: "Invalid email address." };
+  // 2. Zod Validation
+  const parsed = waitlistSchema.safeParse(data);
+  if (!parsed.success) {
+    return { success: false, message: "Invalid form data provided." };
   }
-  if (!name || name.trim().length === 0) {
-    return { success: false, message: "Name is required." };
-  }
-  if (!city || city.trim().length === 0) {
-    return { success: false, message: "City is required." };
-  }
-  if (!salonName || salonName.trim().length === 0) {
-    return { success: false, message: "Salon Name is required." };
-  }
+
+  const { email, name, city, salonName, mobile } = parsed.data;
 
   try {
     console.log(`[JoinWaitlist] Attempting to register: ${email}, Name: ${name}, Salon: ${salonName}`);

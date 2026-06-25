@@ -13,7 +13,8 @@ const WaitlistSection = () => {
         city: '',
         salonName: '',
         email: '',
-        mobile: ''
+        mobile: '',
+        companyWebsite: ''
     });
 
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -42,7 +43,8 @@ const WaitlistSection = () => {
                 name: formData.name,
                 city: formData.city,
                 salonName: formData.salonName,
-                mobile: formData.mobile
+                mobile: formData.mobile,
+                companyWebsite: formData.companyWebsite
             });
 
             if (result.success) {
@@ -52,7 +54,7 @@ const WaitlistSection = () => {
                     salon: formData.salonName
                 });
                 setStatus('success');
-                setFormData({ name: '', city: '', salonName: '', email: '', mobile: '' });
+                setFormData({ name: '', city: '', salonName: '', email: '', mobile: '', companyWebsite: '' });
             } else {
                 setStatus('error');
                 setMessage(result.message);
@@ -118,6 +120,16 @@ const WaitlistSection = () => {
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-4">
+                                <input
+                                    type="text"
+                                    name="companyWebsite"
+                                    style={{ display: 'none' }}
+                                    aria-hidden="true"
+                                    tabIndex={-1}
+                                    value={formData.companyWebsite}
+                                    onChange={handleChange}
+                                    autoComplete="off"
+                                />
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {/* Name */}
                                     <div className="space-y-2">
