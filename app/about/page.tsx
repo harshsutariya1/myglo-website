@@ -87,7 +87,7 @@ const AboutPage = () => {
                             <div className="w-full md:w-[65%] lg:w-[70%] space-y-6">
                                 <div>
                                     <h3 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">Sam Bartlett</h3>
-                                    <p className="text-[#E06052] font-bold tracking-widest uppercase text-sm">Co-Founder & CEO</p>
+                                    <p className="text-[#E06052] font-bold tracking-widest uppercase text-sm">Founder</p>
                                 </div>
                                 <div className="space-y-4 text-[#534B4B] text-lg leading-relaxed font-medium">
                                     <p>
@@ -115,7 +115,7 @@ const AboutPage = () => {
                             <div className="w-full md:w-[65%] lg:w-[70%] space-y-6 text-left md:text-right">
                                 <div>
                                     <h3 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">Harsh Sutariya</h3>
-                                    <p className="text-[#E06052] font-bold tracking-widest uppercase text-sm">Co-Founder & CTO</p>
+                                    <p className="text-[#E06052] font-bold tracking-widest uppercase text-sm">Co-Founder</p>
                                 </div>
                                 <div className="space-y-4 text-[#534B4B] text-lg leading-relaxed font-medium">
                                     <p>
