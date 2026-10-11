@@ -8,17 +8,14 @@ const FeesComparison = () => {
 
     // Constants
     const FRESHA_NEW_CLIENT_FEE = 0.20; // 20%
-    const TIMELY_SUBSCRIPTION = 80; // Avg subscription cost
     const MYGLO_FEE = 0.055; // 5.5% of card payments, no cap
 
     // Calculate derived values directly during render
     const competitorCommission = Math.round(monthlyRevenue * FRESHA_NEW_CLIENT_FEE);
-    const competitorSubscription = TIMELY_SUBSCRIPTION;
     const myGloCost = Number((monthlyRevenue * MYGLO_FEE).toFixed(2));
 
     // Only claim savings against the commission-based example, and only when MyGlo is actually cheaper
     const yearlySavingsVsCommission = (competitorCommission - myGloCost) * 12;
-    const subscriptionIsCheaper = competitorSubscription < myGloCost;
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('en-AU', {
@@ -70,17 +67,6 @@ const FeesComparison = () => {
                     </div>
                 </div>
 
-                {/* Competitor B */}
-                <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-transparent">
-                    <div className="flex flex-col">
-                        <span className="text-sm font-semibold text-gray-400">Other Apps (subscription)</span>
-                        <span className="text-xs text-gray-600">Fixed Cost</span>
-                    </div>
-                    <div className="text-lg font-bold text-gray-300">
-                        {formatCurrency(competitorSubscription)} <span className="text-xs font-normal opacity-50">/mo</span>
-                    </div>
-                </div>
-
                 {/* MyGlo */}
                 <div className="relative overflow-hidden flex items-center justify-between p-4 rounded-xl bg-linear-to-r from-[#FFB6A3]/20 to-[#E06052]/20 border border-[#FFB6A3]/50">
                     <div className="absolute inset-0 bg-white/5 animate-pulse"></div>
@@ -105,13 +91,8 @@ const FeesComparison = () => {
                         </div>
                     </>
                 )}
-                {subscriptionIsCheaper && (
-                    <p className="text-xs text-gray-400 mt-3 max-w-xs mx-auto leading-snug">
-                        At this revenue, the {formatCurrency(competitorSubscription)}/mo subscription example costs less than MyGlo.
-                    </p>
-                )}
                 <p className="text-[10px] text-gray-600 mt-2 max-w-xs mx-auto leading-tight">
-                    *Estimates only, based on the example competitor rates above. MyGlo cost assumes all revenue is paid by card through MyGlo after the 14-day introductory period. Cash bookings carry no MyGlo fee.
+                    *Estimates only, based on the example competitor rate above. MyGlo cost assumes all revenue is paid by card through MyGlo after the 14-day introductory period. Cash bookings carry no MyGlo fee.
                 </p>
             </div>
         </div>
