@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { checkAuth, getWaitlistData } from '@/app/actions/founderActions';
 import LoginComponent from './LoginComponent';
 import DashboardComponent from './DashboardComponent';
@@ -6,9 +7,12 @@ import { AlertTriangle } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata = {
-    title: 'Founder Access | MyGlo',
-    robots: 'noindex, nofollow'
+export const metadata: Metadata = {
+    title: 'Founder Access',
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default async function FounderPage() {

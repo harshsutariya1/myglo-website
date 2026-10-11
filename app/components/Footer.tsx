@@ -24,8 +24,9 @@ const Footer = () => {
     return (
         <footer className="bg-white/80 backdrop-blur-md py-6 border-t border-[#E5E5E5]">
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="text-sm text-[#888080]">
-                    &copy; 2025 MyGlo Australia. All rights reserved.
+                <div className="text-sm text-[#888080] text-center md:text-left">
+                    <div>&copy; {new Date().getFullYear()} MyGlo. All rights reserved.</div>
+                    <div className="text-xs mt-1">MyGlo is operated by Nexotec Pty Ltd &middot; ABN 12 674 499 024</div>
                 </div>
                 <div className="flex gap-6 text-sm font-semibold text-[#140000]">
                     <Link href="/privacy" className="hover:text-[#FFB6A3]">Privacy Policy</Link>

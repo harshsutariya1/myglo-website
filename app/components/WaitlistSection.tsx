@@ -59,7 +59,7 @@ const WaitlistSection = () => {
                 setStatus('error');
                 setMessage(result.message);
             }
-        } catch (error) {
+        } catch {
             setStatus('error');
             setMessage('Something went wrong. Please try again.');
         }
@@ -78,7 +78,7 @@ const WaitlistSection = () => {
                         <div className="text-left">
                             <h2 className="text-3xl md:text-5xl font-bold mb-4">Join the Waitlist</h2>
                             <p className="text-gray-400 text-base md:text-lg">
-                                Be the first to know when we launch in your area. Secure your spot and lock in early-bird benefits.
+                                Be the first to know when we launch in your area.
                             </p>
                         </div>
 
@@ -86,12 +86,12 @@ const WaitlistSection = () => {
                         <div className="bg-gradient-to-r from-[#FFB6A3]/20 to-[#E06052]/20 border border-[#FFB6A3]/30 rounded-2xl p-6 backdrop-blur-md relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFB6A3]/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"></div>
                             <div className="relative z-10">
-                                <h3 className="text-[#FFB6A3] font-bold uppercase tracking-widest text-xs mb-4">🚀 Launch Exclusive</h3>
+                                <h3 className="text-[#FFB6A3] font-bold uppercase tracking-widest text-xs mb-4">🚀 New Provider Intro</h3>
                                 <div className="flex justify-center">
                                     <div className="text-center">
-                                        <div className="text-2xl font-bold text-white mb-1">0% Fees</div>
+                                        <div className="text-2xl font-bold text-white mb-1">No MyGlo Fee for 14 Days</div>
                                         <div className="text-xs text-gray-300">
-                                            For Salons & Artists for the first <span className="text-[#FFB6A3] font-bold">3 months</span> after launch.
+                                            On card payments for your first <span className="text-[#FFB6A3] font-bold">14 days</span> once card payments are enabled.
                                         </div>
                                     </div>
                                 </div>
@@ -109,8 +109,8 @@ const WaitlistSection = () => {
                                 <div className="w-14 h-14 md:w-16 md:h-16 bg-[#07944F]/20 rounded-full flex items-center justify-center mb-2">
                                     <CheckCircle2 size={28} className="md:w-8 md:h-8" color="#07944F" />
                                 </div>
-                                <h3 className="text-lg md:text-xl font-bold text-white">You're on the list!</h3>
-                                <p className="text-sm md:text-base text-gray-400">We'll notify you as soon as we launch in your area.</p>
+                                <h3 className="text-lg md:text-xl font-bold text-white">You&apos;re on the list!</h3>
+                                <p className="text-sm md:text-base text-gray-400">We&apos;ll notify you as soon as we launch in your area.</p>
                                 <button
                                     onClick={() => setStatus('idle')}
                                     className="text-sm font-semibold text-[#FFB6A3] hover:text-[#E06052] mt-4"

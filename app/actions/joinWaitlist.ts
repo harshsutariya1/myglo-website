@@ -86,8 +86,8 @@ const getWelcomeEmailHtml = () => `
                       <span style="font-size: 18px;">💎</span>
                     </td>
                     <td style="padding-left: 16px;">
-                      <p style="margin: 0; color: #140000; font-weight: 600; font-size: 15px;">Launch Special</p>
-                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">Enjoy 0% fees for the first 3 months.</p>
+                      <p style="margin: 0; color: #140000; font-weight: 600; font-size: 15px;">Intro Period</p>
+                      <p style="margin: 4px 0 0 0; color: #534B4B; font-size: 14px; line-height: 1.5;">No MyGlo fee on card payments for your first 14 days once card payments are enabled.</p>
                     </td>
                   </tr>
                 </table>

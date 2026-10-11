@@ -119,7 +119,7 @@ const AboutPage = () => {
                                 </div>
                                 <div className="space-y-4 text-[#534B4B] text-lg leading-relaxed font-medium">
                                     <p>
-                                        With a deep passion for building scalable, elegant, and user-centric technology, Harsh leads the engineering behind MyGlo's platform. 
+                                        With a deep passion for building scalable, elegant, and user-centric technology, Harsh leads the engineering behind MyGlo&apos;s platform. 
                                     </p>
                                     <p>
                                         He thrives on solving complex problems and turning innovative ideas into seamless digital experiences, ensuring that beauty professionals and clients have the best tools at their fingertips.
@@ -135,7 +135,7 @@ const AboutPage = () => {
                     <div className="text-center mb-16">
                         <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">Driven by Values</h2>
                         <p className="text-[#534B4B] max-w-2xl mx-auto text-xl leading-relaxed">
-                            We don't just build software; we build culture. These core principles guide every decision we make at MyGlo.
+                            We don&apos;t just build software; we build culture. These core principles guide every decision we make at MyGlo.
                         </p>
                     </div>
 

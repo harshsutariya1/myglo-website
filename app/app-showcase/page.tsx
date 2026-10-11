@@ -1,6 +1,5 @@
-"use client";
-
-import React from 'react';
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Background from '../components/Background';
@@ -9,6 +8,12 @@ import DiscoveryFeature from './components/DiscoveryFeature';
 import BookingFeature from './components/BookingFeature';
 import ProfileFeature from './components/ProfileFeature';
 import ShowcaseCTA from './components/ShowcaseCTA';
+
+export const metadata: Metadata = pageMetadata({
+    title: 'App Preview',
+    description: 'Take a look inside the MyGlo app: a visual discovery feed, booking and calendar tools, and portfolios for beauty professionals.',
+    path: '/app-showcase',
+});
 
 const AppShowcase = () => {
     return (

@@ -9,18 +9,16 @@ const FeesComparison = () => {
     // Constants
     const FRESHA_NEW_CLIENT_FEE = 0.20; // 20%
     const TIMELY_SUBSCRIPTION = 80; // Avg subscription cost
-    const MYGLO_COMMISSION = 0.055; // 5.5%
-    const MYGLO_CAP = 59; // Max fee
+    const MYGLO_FEE = 0.055; // 5.5% of card payments, no cap
 
     // Calculate derived values directly during render
     const competitorCommission = Math.round(monthlyRevenue * FRESHA_NEW_CLIENT_FEE);
     const competitorSubscription = TIMELY_SUBSCRIPTION;
-    
-    let calculatedFee = monthlyRevenue * MYGLO_COMMISSION;
-    if (calculatedFee >= MYGLO_CAP) {
-        calculatedFee = MYGLO_CAP;
-    }
-    const myGloCost = Number(calculatedFee.toFixed(2));
+    const myGloCost = Number((monthlyRevenue * MYGLO_FEE).toFixed(2));
+
+    // Only claim savings against the commission-based example, and only when MyGlo is actually cheaper
+    const yearlySavingsVsCommission = (competitorCommission - myGloCost) * 12;
+    const subscriptionIsCheaper = competitorSubscription < myGloCost;
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('en-AU', {
@@ -41,7 +39,7 @@ const FeesComparison = () => {
             {/* Slider Input */}
             <div className="mb-8">
                 <div className="flex justify-between text-sm mb-2 text-gray-400">
-                    <span>Booking Revenue</span>
+                    <span>Monthly Card Booking Revenue</span>
                     <span className="text-white font-bold">{formatCurrency(monthlyRevenue)}</span>
                 </div>
                 <input
@@ -87,15 +85,8 @@ const FeesComparison = () => {
                 <div className="relative overflow-hidden flex items-center justify-between p-4 rounded-xl bg-linear-to-r from-[#FFB6A3]/20 to-[#E06052]/20 border border-[#FFB6A3]/50">
                     <div className="absolute inset-0 bg-white/5 animate-pulse"></div>
                     <div className="relative z-10 flex flex-col">
-                        <div className="flex items-center gap-2">
-                            <span className="text-base font-bold text-white">MyGlo</span>
-                            {myGloCost >= MYGLO_CAP && (
-                                <span className="px-1.5 py-0.5 rounded-md bg-[#07944F]/20 border border-[#07944F]/30 text-[#07944F] text-[10px] font-bold uppercase tracking-wide">
-                                    Capped
-                                </span>
-                            )}
-                        </div>
-                        <span className="text-xs text-[#FFB6A3]">Pay-As-You-Go</span>
+                        <span className="text-base font-bold text-white">MyGlo</span>
+                        <span className="text-xs text-[#FFB6A3]">5.5% per card booking</span>
                     </div>
                     <div className="relative z-10 text-2xl font-bold text-white">
                         {formatCurrency(myGloCost)} <span className="text-xs font-normal opacity-50 text-gray-300">/mo</span>
@@ -105,13 +96,22 @@ const FeesComparison = () => {
 
             {/* Savings Message */}
             <div className="mt-6 pt-6 border-t border-white/10 text-center">
-                <p className="text-gray-400 text-sm mb-1">Potential Yearly Savings</p>
-                <div className="text-3xl font-bold text-[#07944F] flex items-center justify-center gap-2">
-                    <TrendingDown size={24} />
-                    {formatCurrency((Math.max(competitorCommission, competitorSubscription) - myGloCost) * 12)}
-                </div>
-                <p className="text-[10px] text-gray-600 mt-2 max-w-50 mx-auto leading-tight">
-                    *Savings calculated against standard competitor rates. Actual amounts may vary.
+                {yearlySavingsVsCommission > 0 && (
+                    <>
+                        <p className="text-gray-400 text-sm mb-1">Potential Yearly Savings vs. Commission Apps</p>
+                        <div className="text-3xl font-bold text-[#07944F] flex items-center justify-center gap-2">
+                            <TrendingDown size={24} />
+                            {formatCurrency(yearlySavingsVsCommission)}
+                        </div>
+                    </>
+                )}
+                {subscriptionIsCheaper && (
+                    <p className="text-xs text-gray-400 mt-3 max-w-xs mx-auto leading-snug">
+                        At this revenue, the {formatCurrency(competitorSubscription)}/mo subscription example costs less than MyGlo.
+                    </p>
+                )}
+                <p className="text-[10px] text-gray-600 mt-2 max-w-xs mx-auto leading-tight">
+                    *Estimates only, based on the example competitor rates above. MyGlo cost assumes all revenue is paid by card through MyGlo after the 14-day introductory period. Cash bookings carry no MyGlo fee.
                 </p>
             </div>
         </div>

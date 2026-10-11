@@ -3,9 +3,14 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WelcomeClient from './WelcomeClient';
 
+// Post-verification landing page: not useful in search results
 export const metadata: Metadata = {
-    title: 'Welcome to MyGlo - Email Verified',
-    description: 'Your email has been successfully verified. Welcome to MyGlo! We are thrilled to have you on board.',
+    title: 'Email Verified',
+    description: 'Your email has been verified. Welcome to MyGlo!',
+    robots: {
+        index: false,
+        follow: true,
+    },
 };
 
 export default function WelcomePage() {

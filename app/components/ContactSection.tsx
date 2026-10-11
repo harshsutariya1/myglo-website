@@ -49,9 +49,9 @@ const ContactSection = () => {
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFF3F0] border border-[#FFB6A3]/30 mb-6">
                             <span className="text-xs font-semibold text-[#E06052] uppercase tracking-wider">Get In Touch</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">Have questions? <br />We'd love to hear from you.</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6">Have questions? <br />We&apos;d love to hear from you.</h2>
                         <p className="text-lg text-[#534B4B] mb-8 leading-relaxed max-w-md">
-                            Whether you're a salon owner looking to partner or a client with feedback, our team is here to help.
+                            Whether you&apos;re a salon owner looking to partner or a client with feedback, our team is here to help.
                         </p>
 
                         <div className="space-y-6">

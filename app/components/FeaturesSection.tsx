@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Smartphone, ShieldCheck, Clock, Link as LinkIcon, BarChart3, MessageCircle, ArrowRight } from 'lucide-react';
+import { Smartphone, ShieldCheck, Clock, Link as LinkIcon, BarChart3, MessageCircle } from 'lucide-react';
 
 const FeaturesSection = () => {
     const [activeFeatureTab, setActiveFeatureTab] = useState('client');
@@ -17,7 +17,7 @@ const FeaturesSection = () => {
                     <span className="text-[#E06052] font-semibold text-xs md:text-sm tracking-wider uppercase mb-3 block">Platform Features</span>
                     <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#140000] tracking-tight">The Future of Beauty Booking</h2>
                     <p className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                        Whether you're looking for the perfect lash tech or running a busy salon, MyGlo is built to simplify your life.
+                        Whether you&apos;re looking for the perfect lash tech or running a busy salon, MyGlo is built to simplify your life.
                     </p>
 
                     {/* Enhanced Toggle Switch */}
@@ -55,7 +55,7 @@ const FeaturesSection = () => {
                                 </div>
                                 <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#140000]">Visual Discovery</h3>
                                 <p className="text-gray-500 leading-relaxed text-sm md:text-base mb-6 flex-grow">
-                                    Don't just read about a salon, see their work. Search for "Blonde Balayage" or "Gel Tips" and browse a visual feed of real results.
+                                    Don&apos;t just read about a salon, see their work. Search for &quot;Blonde Balayage&quot; or &quot;Gel Tips&quot; and browse a visual feed of real results.
                                 </p>
                             </div>
 
@@ -77,7 +77,7 @@ const FeaturesSection = () => {
                                 </div>
                                 <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#140000]">Real-Time Availability</h3>
                                 <p className="text-gray-500 leading-relaxed text-sm md:text-base mb-6 flex-grow">
-                                    Need a last-minute glow up? Filter by "Available Today" to find open slots instantly without calling around.
+                                    Need a last-minute glow up? Filter by &quot;Available Today&quot; to find open slots instantly without calling around.
                                 </p>
                             </div>
                         </div>
@@ -101,7 +101,7 @@ const FeaturesSection = () => {
                                 </div>
                                 <h3 className="text-xl md:text-2xl font-bold mb-3 text-[#140000]">Automated Marketing</h3>
                                 <p className="text-gray-500 leading-relaxed text-sm md:text-base mb-6 flex-grow">
-                                    Every photo you post is a potential booking. Your work appears in local discovery feeds, turning "likes" into appointments automatically.
+                                    Every photo you post is a potential booking. Your work appears in local discovery feeds, turning &quot;likes&quot; into appointments automatically.
                                 </p>
                             </div>
 

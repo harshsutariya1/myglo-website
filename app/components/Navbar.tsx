@@ -84,12 +84,6 @@ const Navbar = () => {
                         >
                             Preview
                         </Link>
-                        <Link
-                            href="/about"
-                            className="hidden md:block text-sm font-semibold text-[#534B4B] hover:text-[#140000] mr-2"
-                        >
-                            About Us
-                        </Link>
 
 
                         <a
@@ -143,14 +137,6 @@ const Navbar = () => {
                             className="text-3xl font-bold text-[#140000] hover:text-[#E06052] transition-colors"
                         >
                             Preview
-                        </Link>
-
-                        <Link
-                            href="/about"
-                            onClick={() => setIsMenuOpen(false)}
-                            className="text-3xl font-bold text-[#140000] hover:text-[#E06052] transition-colors"
-                        >
-                            About
                         </Link>
 
 

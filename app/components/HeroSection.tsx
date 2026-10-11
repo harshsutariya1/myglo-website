@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-    ChevronRight, CheckCircle2, User, Search, Heart, Calendar, LayoutTemplate,
+    ChevronRight, User, Search, Heart, Calendar, LayoutTemplate,
     Home
 } from 'lucide-react';
 

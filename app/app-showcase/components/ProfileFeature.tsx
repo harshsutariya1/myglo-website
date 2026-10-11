@@ -74,7 +74,7 @@ const ProfileFeature = () => {
                                 </div>
 
                                 <div className="flex items-center gap-1 mb-1">
-                                    <h2 className="text-xl font-bold text-[#140000]">Sarah's Studio</h2>
+                                    <h2 className="text-xl font-bold text-[#140000]">Sarah&apos;s Studio</h2>
                                     <BadgeCheck size={16} className="text-[#07944F] fill-green-100" />
                                 </div>
                                 <div className="flex items-center gap-1 text-gray-500 text-xs mb-5">

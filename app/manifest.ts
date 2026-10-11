@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next';
+import { SITE_DESCRIPTION } from '@/lib/seo';
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
         name: 'MyGlo - Beauty Booking Platform',
         short_name: 'MyGlo',
-        description: 'Discover local talent, book appointments instantly, and build your community.',
+        description: SITE_DESCRIPTION,
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
@@ -12,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
         icons: [
             {
                 src: '/MyGlo3D_4.png',
-                sizes: 'any',
+                sizes: '503x496',
                 type: 'image/png',
             },
         ],

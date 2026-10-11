@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { TrendingUp, MessageCircle, User, Palette, Heart, Share2, Zap } from 'lucide-react';
+import { TrendingUp, MessageCircle, User, Palette, Heart } from 'lucide-react';
 
 const CommunitySpotlight = () => {
     const [imgError1, setImgError1] = React.useState(false);
@@ -30,7 +30,7 @@ const CommunitySpotlight = () => {
                         </h2>
 
                         <p className="text-[#534B4B] text-lg leading-relaxed mb-8">
-                            MyGlo isn't just software; it's a thriving ecosystem. Connect with other beauty professionals, share your latest creations, and set the trends for the Australian beauty scene.
+                            MyGlo isn&apos;t just software; it&apos;s a thriving ecosystem. Connect with other beauty professionals, share your latest creations, and set the trends for the Australian beauty scene.
                         </p>
 
                         <div className="grid sm:grid-cols-2 gap-4 mb-8">

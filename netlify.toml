@@ -14,3 +14,12 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Legal PDFs are embedded on /terms and /privacy, so allow same-origin framing
+# for /legal/* only. CSP frame-ancestors takes precedence over X-Frame-Options in
+# browsers, so this works even if Netlify combines it with the DENY rule above.
+[[headers]]
+  for = "/legal/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    Content-Security-Policy = "frame-ancestors 'self'"

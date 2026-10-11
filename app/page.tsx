@@ -1,6 +1,5 @@
-"use client";
-
-import React from 'react';
+import type { Metadata } from 'next';
+import { pageMetadata, SITE_DESCRIPTION } from '@/lib/seo';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ValuePropositions from './components/ValuePropositions';
@@ -17,6 +16,13 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Background from './components/Background';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'MyGlo - The All-in-One Beauty Booking Platform in Australia',
+  description: SITE_DESCRIPTION,
+  path: '/',
+  absoluteTitle: true,
+});
 
 const App = () => {
   return (

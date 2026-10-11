@@ -9,7 +9,7 @@ const FaqSection = () => {
     const faqs = [
         {
             question: "When is MyGlo launching?",
-            answer: "We are launching across Australia in early 2026. Join our waitlist to be the first to know when we go live in your area."
+            answer: "We're launching across Australia soon. Join our waitlist to be the first to know when we go live in your area."
         },
         {
             question: "Is MyGlo free for clients?",
@@ -24,12 +24,16 @@ const FaqSection = () => {
             answer: "Instagram is for everything; MyGlo is specifically for beauty. Our search is built for services (e.g., 'Blonde Specialist' or 'Nail Art'), and every post links directly to a booking option. No more DMing for appointments."
         },
         {
-            question: "Can I switch between the Free and Pro plans?",
-            answer: "Absolutely. You can request a plan switch at any time. To keep billing simple and predictable, your new plan will automatically take effect on the 1st of the next month."
+            question: "Is there a subscription?",
+            answer: "No. There are no subscriptions, plans or monthly caps. MyGlo charges providers a single fee of 5.5% of the amount a client pays by card through MyGlo. Cash bookings carry no MyGlo fee."
+        },
+        {
+            question: "Is there an introductory period for new providers?",
+            answer: "Yes. New providers get a 14-day introductory period for card payments with no MyGlo fee. It starts when card payments are first enabled on your account."
         },
         {
             question: "How do I get paid?",
-            answer: "We use Stripe Connect for secure, automated payouts. Funds are transferred directly to your bank account, and we handle all the split payments and invoices for you."
+            answer: "Card payments are processed through Stripe Connect. Your share of each card booking is paid out through Stripe to the bank account you nominate, on Stripe's payout schedule."
         }
     ];
 
@@ -55,7 +59,7 @@ const FaqSection = () => {
                                 )}
                             </button>
                             <div
-                                className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaqIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaqIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                                     }`}
                             >
                                 <p className="p-6 pt-0 text-[#534B4B] leading-relaxed">

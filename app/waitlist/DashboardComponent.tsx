@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { WaitlistEntry, logoutAction } from "@/app/actions/founderActions";
-import { Download, Search, LogOut, Users, RefreshCw, Calendar, Mail, MapPin, Building2, Phone, Loader2 } from "lucide-react";
+import { Download, Search, LogOut, Users, RefreshCw, Mail, MapPin, Building2, Phone, Loader2 } from "lucide-react";
 
 export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) {
     const router = useRouter();
@@ -61,7 +62,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
             <nav className="bg-white border-b border-[#F3F3F5] px-6 py-4 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <img src="/MyGlo3D_4.png" alt="MyGlo" className="w-8 h-8 object-contain" />
+                        <Image src="/MyGlo3D_4.png" alt="MyGlo" width={32} height={32} className="w-8 h-8 object-contain" />
                         <span className="font-bold text-lg tracking-tight">MyGlo</span>
                     </div>
 
@@ -232,7 +233,7 @@ export default function DashboardComponent({ data }: { data: WaitlistEntry[] }) 
                                                 <div className="w-12 h-12 bg-[#F3F3F5] rounded-full flex items-center justify-center text-[#D4D4D4]">
                                                     <Mail size={24} />
                                                 </div>
-                                                <p className="text-[#888080] text-sm">No entries found matching "{searchTerm}"</p>
+                                                <p className="text-[#888080] text-sm">No entries found matching &quot;{searchTerm}&quot;</p>
                                             </div>
                                         </td>
                                     </tr>
