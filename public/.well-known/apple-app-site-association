@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["RUSXYR8TP4.app.myglo.myglo"],
+        "components": [
+          { "/": "/p/*" },
+          { "/": "/provider/*" }
+        ]
+      }
+    ]
+  }
+}

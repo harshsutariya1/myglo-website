@@ -65,6 +65,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // iOS reads the Universal Links file only as JSON, and it has no file extension.
+        source: '/.well-known/apple-app-site-association',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/json',
+          },
+        ],
+      },
     ];
   },
 };

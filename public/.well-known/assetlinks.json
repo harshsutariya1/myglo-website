@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.myglo.myglo",
+      "sha256_cert_fingerprints": [
+        "17:27:0A:E4:DC:86:33:6F:36:38:8A:DF:6C:4B:99:CE:08:32:9C:36:1F:45:B3:7D:46:11:68:48:61:C6:6D:9F"
+      ]
+    }
+  }
+]
