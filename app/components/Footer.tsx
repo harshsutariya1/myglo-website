@@ -31,6 +31,7 @@ const Footer = () => {
                 <div className="flex gap-6 text-sm font-semibold text-[#140000]">
                     <Link href="/privacy" className="hover:text-[#FFB6A3]">Privacy Policy</Link>
                     <Link href="/terms" className="hover:text-[#FFB6A3]">Terms of Service</Link>
+                    <Link href="/delete-account" className="hover:text-[#FFB6A3]">Delete your account</Link>
                     <a
                         href="#contact"
                         onClick={(e) => handleScroll(e, 'contact')}
